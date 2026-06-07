@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="<%= t.code %>" dir="<%= t.dir %>">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= t.meta.title %></title>
+  <meta name="description" content="<%= t.meta.description %>" />
+  <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0a0e1a;
+      --bg2:       #111827;
+      --bg3:       #1a2035;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #f0f4ff;
+      --muted:     #8b96b0;
+      --blue:      #4361ee;
+      --blue-lt:   #6b83ff;
+      --orange:    #f59e0b;
+      --purple:    #6c63ff;
+      --green:     #22c55e;
+      --radius:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: <%= t.dir === 'rtl' ? "'Cairo', 'Inter', system-ui, sans-serif" : "'Inter', system-ui, sans-serif" %>;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Utilities ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue-lt);
+      background: rgba(67,97,238,.15);
+      border: 1px solid rgba(107,131,255,.25);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    [dir="rtl"] .tag { letter-spacing: 0; }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+    [dir="rtl"] .section-title { letter-spacing: 0; }
+    .section-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+      max-width: 540px;
+    }
+
+    /* ── iPhone Frame ── */
+    .phone {
+      position: relative;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .phone-frame {
+      position: relative;
+      background: #1c1c1e;
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.12),
+        0 32px 80px rgba(0,0,0,.7),
+        inset 0 0 0 2px #2c2c2e;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: #1c1c1e;
+      border-radius: 0 0 16px 16px;
+      z-index: 2;
+    }
+    .phone-screen {
+      border-radius: 34px;
+      overflow: hidden;
+      background: #f0f0f5;
+      aspect-ratio: 9/19.5;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .phone-screen-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #f0f0f5;
+      color: #999;
+      font-size: 12px;
+      text-align: center;
+      padding: 12px;
+    }
+    .phone-screen-placeholder span { font-size: 28px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,14,26,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      gap: 16px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--blue-lt); }
+
+    /* Language switcher */
+    .lang-switch { position: relative; }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .lang-btn:hover { border-color: rgba(107,131,255,.35); }
+    .lang-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      min-width: 140px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+      z-index: 200;
+    }
+    [dir="rtl"] .lang-menu { right: auto; left: 0; }
+    .lang-menu.open { display: block; }
+    .lang-menu a {
+      display: block;
+      padding: 11px 16px;
+      font-size: 14px;
+      color: var(--muted);
+      transition: background .15s, color .15s;
+    }
+    .lang-menu a:hover { background: var(--bg3); color: var(--text); }
+    .lang-menu a.active { color: var(--blue-lt); font-weight: 700; }
+
+    /* Hamburger button */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .nav-hamburger:hover { background: rgba(255,255,255,.08); }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0; right: 0;
+      background: rgba(10,14,26,.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .nav-drawer a:last-of-type { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--text); }
+    .nav-drawer .drawer-cta {
+      display: block;
+      text-align: center;
+      background: var(--blue);
+      color: #fff !important;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 12px;
+      border-bottom: none !important;
+    }
+    .nav-drawer .drawer-cta:hover { background: var(--blue-lt); }
+    .drawer-langs { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 0 4px; }
+    .drawer-lang {
+      border: 1px solid var(--border) !important;
+      border-radius: 999px !important;
+      padding: 7px 16px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+    }
+    .drawer-lang.active { color: var(--blue-lt) !important; border-color: rgba(107,131,255,.4) !important; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero { padding: 80px 0 60px; overflow: hidden; }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25);
+      color: var(--green); font-size: 12px; font-weight: 600;
+      padding: 5px 14px; border-radius: 999px; margin-bottom: 20px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; }
+    .hero-title { font-size: clamp(36px, 5.5vw, 60px); font-weight: 900; line-height: 1.08; letter-spacing: -.03em; margin-bottom: 20px; }
+    [dir="rtl"] .hero-title { letter-spacing: 0; }
+    .hero-title span { color: var(--blue-lt); }
+    .hero-sub { font-size: 18px; color: var(--muted); max-width: 460px; line-height: 1.6; margin-bottom: 36px; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 40px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff; padding: 14px 28px; border-radius: 14px;
+      font-size: 15px; font-weight: 700; transition: transform .2s, background .2s;
+    }
+    .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--muted); padding: 14px 24px; border-radius: 14px;
+      font-size: 15px; font-weight: 600; transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-pill {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--bg3); border: 1px solid var(--border); padding: 7px 14px; border-radius: 999px;
+      font-size: 13px; color: var(--muted); font-weight: 500;
+    }
+    .hero-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .hero-phones { display: flex; gap: -20px; align-items: flex-start; position: relative; }
+    .hero-phones .phone:nth-child(1) { transform: rotate(-4deg) translateY(20px); z-index: 1; }
+    .hero-phones .phone:nth-child(2) { transform: rotate(2deg); z-index: 2; margin-left: -30px; }
+    [dir="rtl"] .hero-phones .phone:nth-child(2) { margin-left: 0; margin-right: -30px; }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-phones { justify-content: center; }
+      .hero-phones .phone { width: 160px; }
+      .hero-phones .phone:nth-child(1) { display: none; }
+      .hero-phones .phone:nth-child(2) { margin-left: 0; margin-right: 0; transform: none; }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 24px 0; }
+    .stats-inner { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 26px; font-weight: 800; color: var(--text); letter-spacing: -.02em; }
+    [dir="rtl"] .stat-num { letter-spacing: 0; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FEATURES SECTION ── */
+    .features { padding: 100px 0; }
+    .features-header { text-align: center; margin-bottom: 72px; }
+    .features-header .section-sub { margin: 0 auto; margin-top: 12px; }
+    .feature-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      padding: 60px 0; border-bottom: 1px solid var(--border);
+    }
+    .feature-row:last-child { border-bottom: none; }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: <%= t.dir %>; }
+    [dir="rtl"] .feature-row.reverse { direction: ltr; }
+    [dir="rtl"] .feature-row.reverse > * { direction: rtl; }
+    .feature-phones { display: flex; justify-content: center; gap: 16px; align-items: flex-start; }
+    .feature-phones .phone:nth-child(2) { margin-top: 32px; }
+    .feature-icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 22px; margin-bottom: 20px; }
+    .feature-title { font-size: 26px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+    [dir="rtl"] .feature-title { letter-spacing: 0; }
+    .feature-desc { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 24px; }
+    .feature-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { background: var(--bg3); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+    @media (max-width: 800px) {
+      .feature-row { grid-template-columns: 1fr; }
+      .feature-row.reverse { direction: ltr; }
+      [dir="rtl"] .feature-row.reverse { direction: rtl; }
+    }
+
+    /* ── WHY ── */
+    .why { padding: 100px 0; background: var(--bg2); }
+    .why-header { text-align: center; margin-bottom: 64px; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .why-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; transition: border-color .2s; }
+    .why-card:hover { border-color: rgba(107,131,255,.35); }
+    .why-num { font-size: 13px; font-weight: 700; color: var(--blue-lt); letter-spacing: .06em; margin-bottom: 12px; }
+    [dir="rtl"] .why-num { letter-spacing: 0; }
+    .why-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── ABOUT ── */
+    .about { padding: 100px 0; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .about-stat { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .about-stat-icon { font-size: 24px; margin-bottom: 8px; }
+    .about-stat-val { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .about-stat-label { font-size: 13px; color: var(--muted); }
+    .about-screens { display: flex; gap: 16px; justify-content: center; align-items: flex-start; }
+    .about-screens .phone:nth-child(1) { transform: rotate(-3deg); }
+    .about-screens .phone:nth-child(2) { transform: rotate(3deg); margin-top: 40px; }
+    @media (max-width: 800px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .about-screens { display: none; }
+    }
+
+    /* ── PRICING ── */
+    .pricing { padding: 100px 0; background: var(--bg2); }
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-card { max-width: 480px; margin: 0 auto; background: var(--bg); border: 1px solid rgba(107,131,255,.35); border-radius: 24px; padding: 48px; box-shadow: 0 0 60px rgba(67,97,238,.12); }
+    .pricing-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(67,97,238,.15); border: 1px solid rgba(107,131,255,.3); color: var(--blue-lt); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 999px; margin-bottom: 24px; }
+    .pricing-price { font-size: 64px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+    [dir="rtl"] .pricing-price { letter-spacing: 0; }
+    .pricing-price sup { font-size: 28px; font-weight: 700; vertical-align: top; margin-top: 12px; display: inline-block; }
+    .pricing-price-note { color: var(--muted); font-size: 14px; margin-top: 8px; margin-bottom: 32px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--muted); }
+    .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .pricing-cta { display: block; text-align: center; background: var(--blue); color: #fff; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; transition: background .2s, transform .2s; }
+    .pricing-cta:hover { background: var(--blue-lt); transform: translateY(-1px); }
+    .pricing-note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 16px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 100px 0; }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .testimonial { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .2s; }
+    .testimonial:hover { border-color: rgba(107,131,255,.3); }
+    .testimonial-stars { color: var(--orange); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0; }
+    .testimonial-name { font-size: 14px; font-weight: 700; }
+    .testimonial-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq { padding: 100px 0; background: var(--bg2); }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .faq-q {
+      width: 100%; text-align: <%= t.dir === 'rtl' ? 'right' : 'left' %>; background: none; border: none; color: var(--text);
+      font-size: 15px; font-weight: 600; padding: 20px 24px; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: inherit;
+    }
+    .faq-q-icon { flex-shrink: 0; font-size: 20px; color: var(--muted); transition: transform .25s; }
+    .faq-a { display: none; padding: 0 24px 20px; font-size: 15px; color: var(--muted); line-height: 1.7; }
+    .faq-item.open .faq-q-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 100px 0; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-title { font-size: 36px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+    [dir="rtl"] .contact-title { letter-spacing: 0; }
+    .contact-sub { color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+    .contact-info { display: flex; flex-direction: column; gap: 14px; }
+    .contact-info-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--muted); }
+    .contact-info-icon { width: 36px; height: 36px; background: var(--bg3); border-radius: 10px; display: grid; place-items: center; font-size: 16px; flex-shrink: 0; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .form-group input, .form-group select, .form-group textarea {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px;
+      color: var(--text); font-size: 15px; font-family: inherit; outline: none; transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group select option { background: var(--bg2); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { background: var(--blue); color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background .2s; }
+    .form-submit:hover { background: var(--blue-lt); }
+    @media (max-width: 800px) {
+      .contact-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { padding: 80px 0; background: linear-gradient(135deg, rgba(67,97,238,.15) 0%, rgba(108,99,255,.1) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); text-align: center; }
+    .cta-banner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+    [dir="rtl"] .cta-banner h2 { letter-spacing: 0; }
+    .cta-banner p { color: var(--muted); font-size: 17px; margin-bottom: 36px; }
+    .cta-banner-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 56px 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 14px; color: var(--muted); margin-top: 10px; max-width: 260px; line-height: 1.6; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    [dir="rtl"] .footer-col h4 { letter-spacing: 0; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { font-size: 14px; color: var(--muted); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 700px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/<%= t.code %>" class="nav-logo">
+        <img src="/logo.png" alt="ShiftlyWork" style="height:36px;width:auto;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features"><%= t.nav.features %></a></li>
+        <li><a href="#why"><%= t.nav.benefits %></a></li>
+        <li><a href="#pricing"><%= t.nav.pricing %></a></li>
+        <li><a href="#faq"><%= t.nav.faq %></a></li>
+        <li><a href="/manual.html"><%= t.nav.manual %></a></li>
+        <li><a href="/privacy.html"><%= t.nav.privacy %></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switch" id="lang-switch">
+          <button class="lang-btn" id="lang-btn">🌐 <%= t.lang[t.code] %> <span style="font-size:10px;">▾</span></button>
+          <div class="lang-menu" id="lang-menu">
+            <% ['en','ar','es','fr'].forEach(function(code){ %>
+              <a href="/<%= code %>" class="<%= code === t.code ? 'active' : '' %>"><%= t.lang[code] %></a>
+            <% }) %>
+          </div>
+        </div>
+        <a href="<%= appStoreUrl %>" class="nav-cta"><%= t.nav.download %></a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#features" onclick="closeDrawer()"><%= t.nav.features %></a>
+  <a href="#why" onclick="closeDrawer()"><%= t.nav.benefits %></a>
+  <a href="#pricing" onclick="closeDrawer()"><%= t.nav.pricing %></a>
+  <a href="#faq" onclick="closeDrawer()"><%= t.nav.faq %></a>
+  <a href="/manual.html" onclick="closeDrawer()"><%= t.nav.manual %></a>
+  <a href="/privacy.html" onclick="closeDrawer()"><%= t.nav.privacy %></a>
+  <div class="drawer-langs">
+    <% ['en','ar','es','fr'].forEach(function(code){ %>
+      <a href="/<%= code %>" class="drawer-lang <%= code === t.code ? 'active' : '' %>"><%= t.lang[code] %></a>
+    <% }) %>
+  </div>
+  <a href="<%= appStoreUrl %>" class="drawer-cta"><%= t.nav.download %> · <%= t.lang[t.code] %></a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge"><%= t.hero.badge %></div>
+        <h1 class="hero-title">
+          <%= t.hero.title1 %><br/>
+          <span><%= t.hero.title2 %></span>
+        </h1>
+        <p class="hero-sub"><%= t.hero.sub %></p>
+        <div class="hero-actions">
+          <a href="<%= appStoreUrl %>" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            <%= t.hero.ctaPrimary %>
+          </a>
+          <a href="#features" class="btn-ghost"><%= t.hero.ctaGhost %></a>
+        </div>
+        <div class="hero-pills">
+          <% t.hero.pills.forEach(function(p){ %>
+            <div class="hero-pill"><div class="hero-pill-dot"></div> <%= p %></div>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="hero-phones">
+        <div class="phone">
+          <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">
+            <img src="/screenshots/04-calendar.jpg" alt="Shiftly calendar view" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>📅</span>Calendar</div>'" />
+          </div></div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">
+            <img src="/screenshots/05-calendar-detail.jpg" alt="Shiftly shift detail" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🕐</span>Shift Detail</div>'" />
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <% t.stats.forEach(function(s){ %>
+        <div class="stat"><div class="stat-num"><%= s.num %></div><div class="stat-label"><%= s.label %></div></div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="tag"><%= t.features.tag %></div>
+      <h2 class="section-title"><%= t.features.title1 %><br/><%= t.features.title2 %></h2>
+      <p class="section-sub"><%= t.features.sub %></p>
+    </div>
+
+    <% var featureImages = [
+      ['04-calendar.jpg','05-calendar-detail.jpg'],
+      ['01-planner.jpg','03-planner-duration.jpg'],
+      ['15-alarms.jpg'],
+      ['09-payroll.jpg'],
+      ['08-fatigue.jpg'],
+      ['06-overview.jpg','12-leave-form.jpg'],
+      ['10-patterns.jpg','13-new-pattern.jpg']
+    ];
+    var featureColors = [
+      'rgba(245,158,11,.15)', 'rgba(107,131,255,.15)', 'rgba(34,197,94,.12)',
+      'rgba(34,197,94,.12)', 'rgba(245,158,11,.15)', 'rgba(108,99,255,.15)', 'rgba(67,97,238,.15)'
+    ];
+    %>
+    <% t.features.items.forEach(function(item, i){ %>
+      <div class="feature-row<%= i % 2 === 1 ? ' reverse' : '' %>">
+        <div class="feature-phones">
+          <% featureImages[i].forEach(function(img){ %>
+            <div class="phone">
+              <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">
+                <img src="/screenshots/<%= img %>" alt="<%= item.title %>" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span><%= item.icon %></span><%= item.title %></div>'" />
+              </div></div>
+            </div>
+          <% }) %>
+        </div>
+        <div class="feature-content">
+          <div class="feature-icon" style="background:<%= featureColors[i] %>"><%= item.icon %></div>
+          <h3 class="feature-title"><%= item.title %></h3>
+          <p class="feature-desc"><%= item.desc %></p>
+          <div class="feature-chips">
+            <% item.chips.forEach(function(c){ %><span class="chip"><%= c %></span><% }) %>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-header">
+      <div class="tag"><%= t.why.tag %></div>
+      <h2 class="section-title"><%= t.why.title1 %><br/><%= t.why.title2 %></h2>
+      <p class="section-sub" style="margin:0 auto;margin-top:12px;"><%= t.why.sub %></p>
+    </div>
+    <div class="why-grid">
+      <% t.why.cards.forEach(function(c){ %>
+        <div class="why-card">
+          <div class="why-num"><%= c.num %></div>
+          <h3><%= c.title %></h3>
+          <p><%= c.desc %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="tag"><%= t.about.tag %></div>
+        <h2 class="section-title"><%= t.about.title1 %><br/><%= t.about.title2 %></h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:16px;"><%= t.about.p1 %></p>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:12px;"><%= t.about.p2 %></p>
+        <a href="mailto:support@shiftlywork.com" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;color:var(--blue-lt);font-size:14px;font-weight:600;">
+          <%= t.about.contact %>
+        </a>
+        <div class="about-stats">
+          <% t.about.stats.forEach(function(s){ %>
+            <div class="about-stat">
+              <div class="about-stat-icon"><%= s.icon %></div>
+              <div class="about-stat-val"><%= s.val %></div>
+              <div class="about-stat-label"><%= s.label %></div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+      <div class="about-screens">
+        <div class="phone">
+          <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">
+            <img src="/screenshots/14-settings.jpg" alt="Settings screen" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>⚙️</span>Settings</div>'" />
+          </div></div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame"><div class="phone-notch"></div><div class="phone-screen">
+            <img src="/screenshots/16-appearance.jpg" alt="Appearance settings" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🎨</span>Appearance</div>'" />
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="tag"><%= t.pricing.tag %></div>
+      <h2 class="section-title"><%= t.pricing.title1 %><br/><%= t.pricing.title2 %></h2>
+      <p class="section-sub" style="margin:0 auto;margin-top:12px;"><%= t.pricing.sub %></p>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-badge"><%= t.pricing.badge %></div>
+      <div class="pricing-price"><sup>$</sup>3.99</div>
+      <p class="pricing-price-note"><%= t.pricing.priceNote %></p>
+      <ul class="pricing-features">
+        <% t.pricing.features.forEach(function(f){ %><li><%= f %></li><% }) %>
+      </ul>
+      <a href="<%= appStoreUrl %>" class="pricing-cta"><%= t.pricing.cta %></a>
+      <p class="pricing-note"><%= t.pricing.note %></p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="tag"><%= t.testimonials.tag %></div>
+      <h2 class="section-title"><%= t.testimonials.title1 %><br/><%= t.testimonials.title2 %></h2>
+    </div>
+    <div class="testimonials-grid">
+      <% var avatarColors = ['var(--blue)','var(--purple)','var(--orange)']; %>
+      <% t.testimonials.items.forEach(function(item, i){ %>
+        <div class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text"><%= item.text %></p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:<%= avatarColors[i] %>"><%= item.initials %></div>
+            <div>
+              <div class="testimonial-name"><%= item.name %></div>
+              <div class="testimonial-role"><%= item.role %></div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="tag"><%= t.faq.tag %></div>
+      <h2 class="section-title"><%= t.faq.title %></h2>
+    </div>
+    <div class="faq-list">
+      <% t.faq.items.forEach(function(item){ %>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <%= item.q %>
+            <span class="faq-q-icon">+</span>
+          </button>
+          <div class="faq-a"><%- item.a %></div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="tag"><%= t.contact.tag %></div>
+        <h2 class="contact-title"><%= t.contact.title1 %><br/><%= t.contact.title2 %></h2>
+        <p class="contact-sub"><%= t.contact.sub %></p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉</div>
+            <a href="mailto:support@shiftlywork.com" style="color:var(--blue-lt)"><%= t.contact.emailLabel %></a>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🌐</div>
+            <a href="https://shiftlywork.com" style="color:var(--blue-lt)"><%= t.contact.siteLabel %></a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label><%= t.contact.form.name %></label>
+            <input type="text" placeholder="<%= t.contact.form.namePh %>" required />
+          </div>
+          <div class="form-group">
+            <label><%= t.contact.form.email %></label>
+            <input type="email" placeholder="<%= t.contact.form.emailPh %>" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label><%= t.contact.form.topic %></label>
+          <select>
+            <option value=""><%= t.contact.form.topicSelect %></option>
+            <% t.contact.form.topicOptions.forEach(function(o){ %><option><%= o %></option><% }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><%= t.contact.form.message %></label>
+          <textarea placeholder="<%= t.contact.form.messagePh %>" required></textarea>
+        </div>
+        <button type="submit" class="form-submit"><%= t.contact.form.submit %></button>
+        <p id="form-success" style="display:none;color:var(--green);font-size:14px;text-align:center;margin-top:4px;"><%= t.contact.form.success %></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2><%= t.cta.title %></h2>
+    <p><%= t.cta.sub %></p>
+    <div class="cta-banner-actions">
+      <a href="<%= appStoreUrl %>" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <%= t.cta.primary %>
+      </a>
+      <a href="/manual.html" class="btn-ghost"><%= t.cta.secondary %></a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/<%= t.code %>" class="nav-logo" style="font-size:16px;">
+          <img src="/logo.png" alt="ShiftlyWork" style="height:32px;width:auto;" />
+        </a>
+        <p><%= t.footer.tagline %></p>
+      </div>
+      <div class="footer-col">
+        <h4><%= t.footer.productTitle %></h4>
+        <ul>
+          <li><a href="#features"><%= t.footer.product[0] %></a></li>
+          <li><a href="#pricing"><%= t.footer.product[1] %></a></li>
+          <li><a href="#testimonials"><%= t.footer.product[2] %></a></li>
+          <li><a href="#faq"><%= t.footer.product[3] %></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><%= t.footer.supportTitle %></h4>
+        <ul>
+          <li><a href="/manual.html"><%= t.footer.support[0] %></a></li>
+          <li><a href="#contact"><%= t.footer.support[1] %></a></li>
+          <li><a href="<%= appStoreUrl %>"><%= t.footer.support[2] %></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><%= t.footer.legalTitle %></h4>
+        <ul>
+          <li><a href="/privacy.html"><%= t.footer.legal[0] %></a></li>
+          <li><a href="/privacy.html#terms"><%= t.footer.legal[1] %></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><%= t.footer.copyright %></p>
+      <div class="footer-links">
+        <a href="/privacy.html"><%= t.footer.links[0] %></a>
+        <a href="/privacy.html#terms"><%= t.footer.links[1] %></a>
+        <a href="/manual.html"><%= t.footer.links[2] %></a>
+        <a href="#contact"><%= t.footer.links[3] %></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
+  });
+
+  // Language switcher dropdown
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langMenu.classList.toggle('open');
+  });
+  document.addEventListener('click', () => langMenu.classList.remove('open'));
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Contact form
+  function handleForm(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 5000);
+  }
+</script>
+
+</body>
+</html>

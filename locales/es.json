@@ -1,0 +1,192 @@
+{
+  "code": "es",
+  "dir": "ltr",
+  "meta": {
+    "title": "Shiftly — Turnos más inteligentes. Mejor equilibrio.",
+    "description": "Shiftly es el calendario de turnos inteligente para trabajadores por turnos en todo el mundo. Rellena 10 años de turnos con un toque, controla tus permisos, estima tu salario y no vuelvas a olvidar un turno. Disponible en App Store."
+  },
+  "nav": {
+    "features": "Funciones",
+    "benefits": "Ventajas",
+    "pricing": "Precio",
+    "faq": "Preguntas",
+    "manual": "Manual",
+    "privacy": "Privacidad",
+    "download": "↓ Descargar"
+  },
+  "hero": {
+    "badge": "Ya disponible en App Store · iOS 16+",
+    "title1": "Turnos más inteligentes.",
+    "title2": "Mejor equilibrio.",
+    "sub": "El calendario de turnos inteligente creado para trabajadores rotativos en todo el mundo. Rellena años de horarios con un toque, controla tus permisos, estima tu salario y no vuelvas a olvidar un turno.",
+    "ctaPrimary": "Descargar en App Store — $3.99",
+    "ctaGhost": "Ver funciones ↓",
+    "pills": ["iPhone y iPad", "Sin suscripción", "Datos solo en tu dispositivo", "Todas las futuras actualizaciones"]
+  },
+  "stats": [
+    { "num": "10 años", "label": "Duración del autorrelleno" },
+    { "num": "$3.99", "label": "Pago único, para siempre" },
+    { "num": "4 idiomas", "label": "EN · AR · ES · FR" },
+    { "num": "100% privado", "label": "Sin nube, sin rastreo" }
+  ],
+  "features": {
+    "tag": "Funciones",
+    "title1": "Diseñado para la realidad",
+    "title2": "del trabajo por turnos",
+    "sub": "Cada función está pensada según cómo viven realmente los trabajadores por turnos: desde la programación automática hasta el control de la fatiga.",
+    "items": [
+      {
+        "icon": "📅",
+        "title": "Calendario de turnos inteligente",
+        "desc": "Día, Noche, Libre — con colores en todo tu mes. Toca cualquier día para ver la hora de inicio, fin y duración. Sobrescribe o bloquea cualquier fecha sin alterar el resto de tu patrón.",
+        "chips": ["Turnos por colores", "Detalles con un toque", "Sobrescribe cualquier día", "Bloquea fechas", "Exportar a PDF"]
+      },
+      {
+        "icon": "✨",
+        "title": "Planificador de turnos",
+        "desc": "Elige un patrón de rotación y rellena hasta 10 años con un solo toque. Una vista previa en color de 30 días te muestra exactamente cómo quedarán tus turnos antes de generarlos. Compatible con 2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF y patrones totalmente personalizados.",
+        "chips": ["2D·2N·4OFF", "3D·3N·3OFF", "4D·4OFF", "Patrones personalizados", "Relleno de hasta 10 años"]
+      },
+      {
+        "icon": "⏰",
+        "title": "Alarmas inteligentes de turno",
+        "desc": "Elige un rango de fechas y Shiftly encuentra todos tus próximos turnos y crea alarmas del sistema iOS automáticamente. Horarios de alarma independientes para turnos de día y de noche: configúralos una vez y olvídate.",
+        "chips": ["Configuración con un toque", "Más de 21 alarmas a la vez", "Por tipo de turno", "Alarmas nativas de iOS"]
+      },
+      {
+        "icon": "💰",
+        "title": "Estimador de nómina",
+        "desc": "Consulta tu salario bruto estimado antes del día de pago. Shiftly calcula automáticamente el salario base, el plus nocturno, los recargos de fin de semana y las horas extra, todo desglosado a partir de tu horario real.",
+        "chips": ["Plus nocturno", "Recargo de fin de semana", "Horas extra", "Bonificaciones manuales", "Configurar tarifa por hora"]
+      },
+      {
+        "icon": "🧠",
+        "title": "Guardián de la fatiga",
+        "desc": "Análisis de sueño y fatiga con inteligencia artificial basado en tu patrón real de turnos. Supervisa el sueño medio, las rachas de noches consecutivas y la deuda de sueño, y te ofrece recomendaciones personalizadas antes de que llegue el agotamiento.",
+        "chips": ["Puntuación de fatiga", "Control de la deuda de sueño", "Noches consecutivas", "Consejos de bienestar"]
+      },
+      {
+        "icon": "✈️",
+        "title": "Permisos y disponibilidad",
+        "desc": "Controla las vacaciones anuales, los días compensatorios y las guardias con un resumen completo del saldo anual. Registra cambios de turno, sobrescribe rotaciones y ten todo en un solo lugar.",
+        "chips": ["Vacaciones anuales", "Días compensatorios", "Guardias", "Registro de cambios", "Resumen de saldo"]
+      },
+      {
+        "icon": "🔄",
+        "title": "Patrones de rotación personalizados",
+        "desc": "Cada rotación es distinta. Crea un patrón totalmente personalizado combinando segmentos de Día, Noche, Mediodía y Libre en cualquier orden. Guarda varios patrones y cambia entre ellos al instante.",
+        "chips": ["Segmentos ilimitados", "Vista previa en vivo", "Guardar y nombrar patrones", "Cambio rápido"]
+      }
+    ]
+  },
+  "why": {
+    "tag": "Por qué Shiftly",
+    "title1": "Tu horario,",
+    "title2": "por fin en tus manos",
+    "sub": "El trabajo por turnos altera el sueño, la salud y la planificación. Shiftly te da las herramientas para ir un paso por delante.",
+    "cards": [
+      { "num": "01", "title": "Rellena 10 años en segundos", "desc": "Elige tu patrón de rotación una sola vez. Shiftly rellena automáticamente todo tu calendario, sin introducir nada a mano." },
+      { "num": "02", "title": "Nunca te pierdas una alarma de turno", "desc": "Un toque crea alarmas perfectamente programadas para cada próximo turno. Totalmente automático y siempre preciso." },
+      { "num": "03", "title": "Comprende tu bienestar", "desc": "El Guardián de la fatiga analiza tu patrón y te da recomendaciones personalizadas antes de que llegue el agotamiento." },
+      { "num": "04", "title": "Tus datos se quedan contigo", "desc": "Todos los datos se guardan localmente en tu dispositivo. Shiftly nunca recopila, comparte ni monetiza tu horario." }
+    ]
+  },
+  "about": {
+    "tag": "Sobre ShiftlyWork",
+    "title1": "Creada por un trabajador por turnos,",
+    "title2": "para trabajadores por turnos",
+    "p1": "Shiftly fue creada por alguien con 25 años de experiencia en operaciones aeroportuarias 24/7, el tipo de entorno donde el horario de los turnos es crítico y la fatiga tiene consecuencias reales.",
+    "p2": "Cada función de Shiftly resuelve un problema que vivimos en primera persona: olvidar un turno, calcular mal un permiso o no saber realmente lo cansados que estábamos. Este es un software creado con empatía.",
+    "contact": "✉ Contactar con el equipo →",
+    "stats": [
+      { "icon": "🛫", "val": "25 años", "label": "Operaciones aeroportuarias" },
+      { "icon": "🌍", "val": "En todo el mundo", "label": "EN · AR · ES · FR" },
+      { "icon": "📱", "val": "iOS 16+", "label": "iPhone · iPad" },
+      { "icon": "🔒", "val": "100% privado", "label": "Sin cuentas · Sin nube" }
+    ]
+  },
+  "pricing": {
+    "tag": "Precio",
+    "title1": "Una app. Un precio.",
+    "title2": "Todas las funciones. Para siempre.",
+    "sub": "Sin suscripciones. Sin niveles. Sin cargos recurrentes. Mientras la competencia cobra entre $3 y $8 al mes, Shiftly es tuya de por vida con un único pago de $3.99.",
+    "badge": "👑 Acceso de por vida",
+    "priceNote": "Pago único · Sin suscripción · Tuya para siempre",
+    "features": [
+      "Calendario de turnos — vista mensual completa",
+      "Planificador de turnos — autorrelleno de hasta 10 años",
+      "Alarmas inteligentes de turno",
+      "Estimador de nómina",
+      "Guardián de la fatiga (análisis con IA)",
+      "Control de permisos y disponibilidad",
+      "Registro de cambios y sobrescritura de fechas",
+      "Exportación a PDF y AirPrint",
+      "EN · árabe · español · francés",
+      "Todas las futuras actualizaciones incluidas"
+    ],
+    "cta": "Descargar en App Store — $3.99",
+    "note": "Compra segura a través de Apple · iPhone y iPad · iOS 16+"
+  },
+  "testimonials": {
+    "tag": "Opiniones",
+    "title1": "La confianza de equipos",
+    "title2": "en todo el mundo",
+    "items": [
+      { "text": "“Por fin una app que entiende los turnos rotativos. El autorrelleno me ahorra horas cada mes. El sistema de alarmas es brillante: no he vuelto a perder un turno desde que la uso.”", "initials": "KA", "name": "K. A.", "role": "Operaciones de seguridad" },
+      { "text": "“La puntuación de fatiga lo cambia todo. Antes ignoraba las señales de aviso; ahora puedo ver con claridad cuándo necesito descansar. Mi salud ha mejorado de verdad.”", "initials": "SR", "name": "S. R.", "role": "Enfermera de UCI" },
+      { "text": "“El estimador de nómina por sí solo justifica el precio. Ahora puedo planificar mis finanzas con cifras reales de mis turnos en lugar de adivinar. Está increíblemente bien pensado.”", "initials": "MC", "name": "M. C.", "role": "Supervisor de fábrica" }
+    ]
+  },
+  "faq": {
+    "tag": "Preguntas",
+    "title": "Preguntas frecuentes",
+    "items": [
+      { "q": "¿Qué plataformas admite Shiftly?", "a": "Shiftly está disponible en iOS — iPhone y iPad — y requiere iOS 16 o posterior. Una versión para Android (ShiftlyGrid) está en desarrollo." },
+      { "q": "¿Hay suscripción o pago recurrente?", "a": "No. Shiftly se compra una sola vez por $3.99. Tienes acceso completo a todas las funciones y a todas las futuras actualizaciones, para siempre. Sin suscripciones ni renovaciones." },
+      { "q": "¿Cómo funcionan las alarmas inteligentes?", "a": "Elige un rango de fechas y Shiftly localiza todos tus próximos turnos y crea automáticamente una alarma del sistema iOS para cada uno. Puedes establecer horas de alarma distintas para los turnos de día y de noche, y Shiftly se encarga del resto." },
+      { "q": "¿Mis datos se guardan en la nube?", "a": "No. Todos tus datos de turnos se guardan localmente en tu dispositivo. ShiftlyWork no recopila, transmite ni comparte ninguno de tus datos personales o de horario. Tu privacidad es fundamental en el diseño de Shiftly." },
+      { "q": "¿Puedo crear un patrón de turnos personalizado?", "a": "Por supuesto. Además de los patrones integrados (2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF, 2D·2Mediodía·2N·2OFF), puedes crear rotaciones totalmente personalizadas combinando segmentos de Día, Noche, Mediodía y Libre en cualquier orden." },
+      { "q": "¿Puedo exportar o imprimir mi calendario?", "a": "Sí. Shiftly te permite exportar tu calendario como PDF o imprimirlo directamente desde la app mediante AirPrint. Ideal para compartir con tu familia o conservar un registro en papel." },
+      { "q": "¿Llegará Shiftly a Android?", "a": "ShiftlyGrid para Android está actualmente en desarrollo. Apúntate a la lista de espera escribiendo a <a href=\"mailto:support@shiftlywork.com\" style=\"color:var(--blue-lt)\">support@shiftlywork.com</a> y te avisaremos cuando esté disponible." }
+    ]
+  },
+  "contact": {
+    "tag": "Contacta con nosotros",
+    "title1": "Estamos aquí",
+    "title2": "para ayudarte",
+    "sub": "¿Tienes preguntas, comentarios o ideas para nuevas funciones? Leemos todos los mensajes y solemos responder en menos de 24 horas.",
+    "emailLabel": "support@shiftlywork.com",
+    "siteLabel": "shiftlywork.com",
+    "form": {
+      "name": "Nombre",
+      "namePh": "Tu nombre",
+      "email": "Correo electrónico",
+      "emailPh": "tucorreo@ejemplo.com",
+      "topic": "Tema",
+      "topicSelect": "Selecciona un tema…",
+      "topicOptions": ["Soporte de la app", "Comentarios", "Solicitud de función", "Lista de espera de Android", "Consulta comercial", "Otro"],
+      "message": "Mensaje",
+      "messagePh": "Cuéntanos cómo podemos ayudarte…",
+      "submit": "Enviar mensaje →",
+      "success": "✅ ¡Mensaje enviado! Te responderemos en menos de 24 horas."
+    }
+  },
+  "cta": {
+    "title": "Tu horario. Tu control.",
+    "sub": "Únete a los trabajadores por turnos de todo el mundo que planifican mejor con Shiftly.",
+    "primary": "Descargar en App Store — $3.99",
+    "secondary": "Leer el manual ↗"
+  },
+  "footer": {
+    "tagline": "El calendario de turnos inteligente para trabajadores por turnos en todo el mundo.",
+    "productTitle": "Producto",
+    "product": ["Funciones", "Precio", "Opiniones", "Preguntas"],
+    "supportTitle": "Soporte",
+    "support": ["Manual de usuario", "Contáctanos", "Valorar la app ↗"],
+    "legalTitle": "Legal",
+    "legal": ["Política de privacidad", "Condiciones de uso"],
+    "copyright": "© 2026 ShiftlyWork. Todos los derechos reservados.",
+    "links": ["Privacidad", "Condiciones", "Manual", "Contacto"]
+  },
+  "lang": { "name": "Idioma", "en": "English", "ar": "العربية", "es": "Español", "fr": "Français" }
+}

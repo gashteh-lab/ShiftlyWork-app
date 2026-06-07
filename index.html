@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiftly — Smarter Shifts. Better Balance.</title>
+  <meta name="description" content="Shiftly is the intelligent shift calendar for shift workers worldwide. Auto-fill 10 years of shifts in one tap, track leave, estimate pay, and never miss a shift again. Free on the App Store." />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0a0e1a;
+      --bg2:       #111827;
+      --bg3:       #1a2035;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #f0f4ff;
+      --muted:     #8b96b0;
+      --blue:      #4361ee;
+      --blue-lt:   #6b83ff;
+      --orange:    #f59e0b;
+      --purple:    #6c63ff;
+      --green:     #22c55e;
+      --radius:    16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Utilities ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue-lt);
+      background: rgba(67,97,238,.15);
+      border: 1px solid rgba(107,131,255,.25);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+      max-width: 540px;
+    }
+
+    /* ── iPhone Frame ── */
+    .phone {
+      position: relative;
+      width: 220px;
+      flex-shrink: 0;
+    }
+    .phone-frame {
+      position: relative;
+      background: #1c1c1e;
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.12),
+        0 32px 80px rgba(0,0,0,.7),
+        inset 0 0 0 2px #2c2c2e;
+    }
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 24px;
+      background: #1c1c1e;
+      border-radius: 0 0 16px 16px;
+      z-index: 2;
+    }
+    .phone-screen {
+      border-radius: 34px;
+      overflow: hidden;
+      background: #f0f0f5;
+      aspect-ratio: 9/19.5;
+    }
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    /* placeholder when no image */
+    .phone-screen-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #f0f0f5;
+      color: #999;
+      font-size: 12px;
+      text-align: center;
+      padding: 12px;
+    }
+    .phone-screen-placeholder span { font-size: 28px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,14,26,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-lt); }
+
+    /* Hamburger button */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .nav-hamburger:hover { background: rgba(255,255,255,.08); }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    /* animated X when open */
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0; right: 0;
+      background: rgba(10,14,26,.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-drawer a {
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .nav-drawer a:last-of-type { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--text); }
+    .nav-drawer .drawer-cta {
+      display: block;
+      text-align: center;
+      background: var(--blue);
+      color: #fff !important;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 12px;
+      border-bottom: none !important;
+    }
+    .nav-drawer .drawer-cta:hover { background: var(--blue-lt); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 0 60px;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.25);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; }
+    .hero-title {
+      font-size: clamp(36px, 5.5vw, 60px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--blue-lt); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 460px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform .2s, background .2s;
+    }
+    .btn-primary:hover { background: var(--blue-lt); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .hero-pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    /* Hero phone cluster */
+    .hero-phones {
+      display: flex;
+      gap: -20px;
+      align-items: flex-start;
+      position: relative;
+    }
+    .hero-phones .phone:nth-child(1) { transform: rotate(-4deg) translateY(20px); z-index: 1; }
+    .hero-phones .phone:nth-child(2) { transform: rotate(2deg); z-index: 2; margin-left: -30px; }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-phones { justify-content: center; }
+      .hero-phones .phone { width: 160px; }
+      .hero-phones .phone:nth-child(1) { display: none; }
+      .hero-phones .phone:nth-child(2) { margin-left: 0; transform: none; }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .stats-inner {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FEATURES SECTION ── */
+    .features { padding: 100px 0; }
+    .features-header { text-align: center; margin-bottom: 72px; }
+    .features-header .section-sub { margin: 0 auto; margin-top: 12px; }
+
+    /* Feature Row */
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-row:last-child { border-bottom: none; }
+    .feature-row.reverse { direction: rtl; }
+    .feature-row.reverse > * { direction: ltr; }
+    .feature-phones {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .feature-phones .phone:nth-child(2) {
+      margin-top: 32px;
+    }
+    .feature-content {}
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .feature-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+    .feature-desc {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .feature-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    @media (max-width: 800px) {
+      .feature-row { grid-template-columns: 1fr; }
+      .feature-row.reverse { direction: ltr; }
+    }
+
+    /* ── WHY SECTION ── */
+    .why { padding: 100px 0; background: var(--bg2); }
+    .why-header { text-align: center; margin-bottom: 64px; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color .2s;
+    }
+    .why-card:hover { border-color: rgba(107,131,255,.35); }
+    .why-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-lt);
+      letter-spacing: .06em;
+      margin-bottom: 12px;
+    }
+    .why-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── ABOUT ── */
+    .about { padding: 100px 0; }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .about-stat {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .about-stat-icon { font-size: 24px; margin-bottom: 8px; }
+    .about-stat-val { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .about-stat-label { font-size: 13px; color: var(--muted); }
+    .about-screens {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .about-screens .phone:nth-child(1) { transform: rotate(-3deg); }
+    .about-screens .phone:nth-child(2) { transform: rotate(3deg); margin-top: 40px; }
+    @media (max-width: 800px) {
+      .about-inner { grid-template-columns: 1fr; }
+      .about-screens { display: none; }
+    }
+
+    /* ── PRICING ── */
+    .pricing { padding: 100px 0; background: var(--bg2); }
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg);
+      border: 1px solid rgba(107,131,255,.35);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 0 60px rgba(67,97,238,.12);
+    }
+    .pricing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(67,97,238,.15);
+      border: 1px solid rgba(107,131,255,.3);
+      color: var(--blue-lt);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .pricing-price {
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .pricing-price sup { font-size: 28px; font-weight: 700; vertical-align: top; margin-top: 12px; display: inline-block; }
+    .pricing-price-note { color: var(--muted); font-size: 14px; margin-top: 8px; margin-bottom: 32px; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      background: var(--blue);
+      color: #fff;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: background .2s, transform .2s;
+    }
+    .pricing-cta:hover { background: var(--blue-lt); transform: translateY(-1px); }
+    .pricing-note { text-align: center; color: var(--muted); font-size: 13px; margin-top: 16px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 100px 0; }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .testimonial {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color .2s;
+    }
+    .testimonial:hover { border-color: rgba(107,131,255,.3); }
+    .testimonial-stars { color: var(--orange); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 700; }
+    .testimonial-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FAQ ── */
+    .faq { padding: 100px 0; background: var(--bg2); }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-list { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+    .faq-q-icon { flex-shrink: 0; font-size: 20px; color: var(--muted); transition: transform .25s; }
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-q-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CONTACT ── */
+    .contact { padding: 100px 0; }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-title { font-size: 36px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+    .contact-sub { color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+    .contact-info { display: flex; flex-direction: column; gap: 14px; }
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .contact-info-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg3);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blue); }
+    .form-group select option { background: var(--bg2); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .2s;
+    }
+    .form-submit:hover { background: var(--blue-lt); }
+    @media (max-width: 800px) {
+      .contact-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(67,97,238,.15) 0%, rgba(108,99,255,.1) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-banner h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -.02em; margin-bottom: 12px; }
+    .cta-banner p { color: var(--muted); font-size: 17px; margin-bottom: 36px; }
+    .cta-banner-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 14px; color: var(--muted); margin-top: 10px; max-width: 260px; line-height: 1.6; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { font-size: 14px; color: var(--muted); transition: color .2s; }
+    .footer-col ul a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 13px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    @media (max-width: 700px) {
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <img src="logo.png" alt="ShiftlyWork" style="height:36px;width:auto;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#why">Benefits</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="manual.html">Manual</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+      <a href="https://apps.apple.com/app/shiftly" class="nav-cta">↓ Download</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#features" onclick="closeDrawer()">Features</a>
+  <a href="#why" onclick="closeDrawer()">Benefits</a>
+  <a href="#pricing" onclick="closeDrawer()">Pricing</a>
+  <a href="#faq" onclick="closeDrawer()">FAQ</a>
+  <a href="manual.html" onclick="closeDrawer()">Manual</a>
+  <a href="privacy.html" onclick="closeDrawer()">Privacy</a>
+  <a href="https://apps.apple.com/app/shiftly" class="drawer-cta">↓ Download on App Store</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">Now live on the App Store · iOS 16+</div>
+        <h1 class="hero-title">
+          Smarter shifts.<br/>
+          <span>Better balance.</span>
+        </h1>
+        <p class="hero-sub">
+          The intelligent shift calendar built for rotating workers worldwide.
+          Auto-fill years of schedules in one tap, track leave, estimate pay, and never miss a shift again.
+        </p>
+        <div class="hero-actions">
+          <a href="https://apps.apple.com/app/shiftly" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            Download on App Store — $3.99
+          </a>
+          <a href="#features" class="btn-ghost">Explore Features ↓</a>
+        </div>
+        <div class="hero-pills">
+          <div class="hero-pill"><div class="hero-pill-dot"></div> iPhone &amp; iPad</div>
+          <div class="hero-pill"><div class="hero-pill-dot"></div> No Subscription</div>
+          <div class="hero-pill"><div class="hero-pill-dot"></div> Data Stays On Device</div>
+          <div class="hero-pill"><div class="hero-pill-dot"></div> All Future Updates</div>
+        </div>
+      </div>
+
+      <!-- HERO PHONES — save screenshots as screenshots/04-calendar.jpg and screenshots/05-calendar-detail.jpg -->
+      <div class="hero-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/04-calendar.jpg" alt="Shiftly calendar view showing Day, Night, and Off shifts" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>📅</span>Calendar View<br/><small>Save as:<br/>screenshots/04-calendar.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/05-calendar-detail.jpg" alt="Shiftly shift detail showing start time, end time, override and lock options" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🕐</span>Shift Detail<br/><small>Save as:<br/>screenshots/05-calendar-detail.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num">10 Years</div>
+        <div class="stat-label">Auto-fill duration</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$3.99</div>
+        <div class="stat-label">One-time price, forever</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4 Languages</div>
+        <div class="stat-label">EN · AR · ES · FR</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100% Private</div>
+        <div class="stat-label">No cloud, no tracking</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="tag">Features</div>
+      <h2 class="section-title">Built for the real world<br/>of shift work</h2>
+      <p class="section-sub">Every feature designed around how shift workers actually live — from auto-scheduling to fatigue tracking.</p>
+    </div>
+
+    <!-- Feature 1: Calendar -->
+    <div class="feature-row">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/04-calendar.jpg" alt="Monthly calendar with colour-coded Day, Night and Off shifts" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>📅</span>Calendar<br/><small>screenshots/04-calendar.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/05-calendar-detail.jpg" alt="Day detail showing shift start, end and override options" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🕐</span>Day Detail<br/><small>screenshots/05-calendar-detail.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(245,158,11,.15)">📅</div>
+        <h3 class="feature-title">Intelligent Shift Calendar</h3>
+        <p class="feature-desc">
+          Day, Night, Off — colour-coded across your entire month. Tap any day to see start time, end time, and duration. Override or lock any date without disrupting the rest of your pattern.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">Colour-coded shifts</span>
+          <span class="chip">Tap for details</span>
+          <span class="chip">Override any day</span>
+          <span class="chip">Lock dates</span>
+          <span class="chip">PDF export</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Shift Planner -->
+    <div class="feature-row reverse">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/01-planner.jpg" alt="Shift Planner with rotation pattern selector and 30-day preview" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>✨</span>Shift Planner<br/><small>screenshots/01-planner.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/03-planner-duration.jpg" alt="Duration picker showing 1 year to 10 years options" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🗓</span>Duration<br/><small>screenshots/03-planner-duration.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(107,131,255,.15)">✨</div>
+        <h3 class="feature-title">Shift Planner</h3>
+        <p class="feature-desc">
+          Choose a rotation pattern and auto-fill up to 10 years in one tap. A live 30-day colour preview shows exactly how your shifts will look before you generate. Supports 2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF, and fully custom patterns.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">2D·2N·4OFF</span>
+          <span class="chip">3D·3N·3OFF</span>
+          <span class="chip">4D·4OFF</span>
+          <span class="chip">Custom patterns</span>
+          <span class="chip">Up to 10-year fill</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Smart Alarms -->
+    <div class="feature-row">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/15-alarms.jpg" alt="Shift Alarms showing 28 active alarms scheduled across June" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>⏰</span>Smart Alarms<br/><small>screenshots/15-alarms.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">⏰</div>
+        <h3 class="feature-title">Smart Shift Alarms</h3>
+        <p class="feature-desc">
+          Pick a date range and Shiftly finds every upcoming shift and creates iOS system alarms automatically. Separate alarm times for Day shifts and Night shifts — set them once, never touch them again.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">One-tap setup</span>
+          <span class="chip">21+ alarms at once</span>
+          <span class="chip">Per shift type</span>
+          <span class="chip">Native iOS alarms</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4: Payroll Estimator -->
+    <div class="feature-row reverse">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/09-payroll.jpg" alt="Payroll Estimator showing $3,850 gross pay with base, night differential and weekend premium breakdown" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>💰</span>Payroll<br/><small>screenshots/09-payroll.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(34,197,94,.12)">💰</div>
+        <h3 class="feature-title">Payroll Estimator</h3>
+        <p class="feature-desc">
+          See your estimated gross pay before payday. Shiftly automatically calculates base pay, night differential, weekend premiums, and overtime — all broken down from your actual shift schedule.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">Night differential</span>
+          <span class="chip">Weekend premium</span>
+          <span class="chip">Overtime</span>
+          <span class="chip">Manual bonuses</span>
+          <span class="chip">Hourly rate config</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 5: Fatigue Guardian -->
+    <div class="feature-row">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/08-fatigue.jpg" alt="Fatigue Guardian showing 35/100 score, average sleep, consecutive nights and recommendations" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🧠</span>Fatigue Guardian<br/><small>screenshots/08-fatigue.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(245,158,11,.15)">🧠</div>
+        <h3 class="feature-title">Fatigue Guardian</h3>
+        <p class="feature-desc">
+          AI-powered sleep and fatigue analysis based on your real shift pattern. Monitors average sleep, consecutive night runs, and sleep debt — then gives you personalised recommendations before burnout hits.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">Fatigue score</span>
+          <span class="chip">Sleep debt tracking</span>
+          <span class="chip">Consecutive nights</span>
+          <span class="chip">Wellness tips</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 6: Leave & Patterns -->
+    <div class="feature-row reverse">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/06-overview.jpg" alt="Overview showing Leave balance, Swap Log and Comp Off" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>✈️</span>Overview<br/><small>screenshots/06-overview.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/12-leave-form.jpg" alt="Add leave form with Annual Leave, Comp Off and Stand By options" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>📋</span>Add Leave<br/><small>screenshots/12-leave-form.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(108,99,255,.15)">✈️</div>
+        <h3 class="feature-title">Leave &amp; Availability</h3>
+        <p class="feature-desc">
+          Track Annual Leave, Comp Off, and Standby duties with a full balance overview for the year. Log swap requests, override rotations, and keep everything in one place.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">Annual leave</span>
+          <span class="chip">Comp off</span>
+          <span class="chip">Standby duties</span>
+          <span class="chip">Swap log</span>
+          <span class="chip">Balance overview</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 7: Custom Patterns -->
+    <div class="feature-row">
+      <div class="feature-phones">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/10-patterns.jpg" alt="Patterns page showing active rotation and saved patterns list" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🔄</span>Patterns<br/><small>screenshots/10-patterns.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/13-new-pattern.jpg" alt="New Pattern builder with Day Shift, Night Shift and Off Duty segment controls" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>⚙️</span>Custom Pattern<br/><small>screenshots/13-new-pattern.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feature-content">
+        <div class="feature-icon" style="background:rgba(67,97,238,.15)">🔄</div>
+        <h3 class="feature-title">Custom Rotation Patterns</h3>
+        <p class="feature-desc">
+          Every rotation is different. Build a fully custom pattern with any combination of Day, Night, Noon, and Off segments in any sequence. Save multiple patterns and switch between them instantly.
+        </p>
+        <div class="feature-chips">
+          <span class="chip">Unlimited segments</span>
+          <span class="chip">Live preview</span>
+          <span class="chip">Save &amp; name patterns</span>
+          <span class="chip">Quick switch</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-header">
+      <div class="tag">Why Shiftly</div>
+      <h2 class="section-title">Your schedule,<br/>finally in your hands</h2>
+      <p class="section-sub" style="margin:0 auto;margin-top:12px;">Shift work disrupts sleep, health, and planning. Shiftly gives you the tools to stay ahead.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Fill 10 years in seconds</h3>
+        <p>Choose your rotation pattern once. Shiftly auto-fills your entire calendar — no manual entry, ever.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Never miss a shift alarm</h3>
+        <p>One tap creates perfectly timed alarms for every upcoming shift. Fully automatic, always accurate.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Understand your wellbeing</h3>
+        <p>The Fatigue Guardian analyses your pattern and gives you personalised recommendations before burnout hits.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h3>Your data stays with you</h3>
+        <p>All data is stored locally on your device. Shiftly never collects, shares, or monetises your schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="tag">About ShiftlyWork</div>
+        <h2 class="section-title">Built by a shift worker,<br/>for shift workers</h2>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:16px;">
+          Shiftly was created by someone with 25 years of experience in 24/7 airport operations — the kind of environment where shift timing is critical and fatigue has real consequences.
+        </p>
+        <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-top:12px;">
+          Every feature in Shiftly solves a problem we personally experienced: forgetting a shift, miscalculating leave, or not knowing how tired we actually were. This is software built with empathy.
+        </p>
+        <a href="mailto:support@shiftlywork.com" style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;color:var(--blue-lt);font-size:14px;font-weight:600;">
+          ✉ Contact the team →
+        </a>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-icon">🛫</div>
+            <div class="about-stat-val">25 Years</div>
+            <div class="about-stat-label">Airport Operations</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-icon">🌍</div>
+            <div class="about-stat-val">Worldwide</div>
+            <div class="about-stat-label">EN · AR · ES · FR</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-icon">📱</div>
+            <div class="about-stat-val">iOS 16+</div>
+            <div class="about-stat-label">iPhone · iPad</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-icon">🔒</div>
+            <div class="about-stat-val">100% Private</div>
+            <div class="about-stat-label">No accounts · No cloud</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-screens">
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/14-settings.jpg" alt="Settings screen with calendar preferences and notification options" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>⚙️</span>Settings<br/><small>screenshots/14-settings.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+        <div class="phone">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="screenshots/16-appearance.jpg" alt="Appearance settings with Calendar, Glow, Minimal and Stripe themes" onerror="this.parentElement.innerHTML='<div class=\'phone-screen-placeholder\'><span>🎨</span>Appearance<br/><small>screenshots/16-appearance.jpg</small></div>'" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="tag">Pricing</div>
+      <h2 class="section-title">One app. One price.<br/>All features. Forever.</h2>
+      <p class="section-sub" style="margin:0 auto;margin-top:12px;">No subscriptions. No tiers. No recurring charges. While competitors charge $3–8/month, Shiftly is yours for life for a single $3.99 payment.</p>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-badge">👑 Lifetime Access</div>
+      <div class="pricing-price"><sup>$</sup>3.99</div>
+      <p class="pricing-price-note">One-time payment · No subscription · Own it forever</p>
+      <ul class="pricing-features">
+        <li>Shift Calendar — full month view</li>
+        <li>Shift Planner — auto-fill up to 10 years</li>
+        <li>Smart Shift Alarms</li>
+        <li>Payroll Estimator</li>
+        <li>Fatigue Guardian (AI analysis)</li>
+        <li>Leave &amp; Availability tracker</li>
+        <li>Swap Log &amp; Date overrides</li>
+        <li>PDF export &amp; AirPrint</li>
+        <li>EN · Arabic · Spanish · French</li>
+        <li>All future updates included</li>
+      </ul>
+      <a href="https://apps.apple.com/app/shiftly" class="pricing-cta">
+        Download on App Store — $3.99
+      </a>
+      <p class="pricing-note">Secure purchase through Apple · iPhone &amp; iPad · iOS 16+</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="tag">Reviews</div>
+      <h2 class="section-title">Trusted by teams<br/>around the world</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Finally an app that understands rotating shifts. The auto-fill saved me hours every month. The alarm system is absolutely brilliant — I haven't missed a shift since."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--blue)">KA</div>
+          <div>
+            <div class="testimonial-name">K. A.</div>
+            <div class="testimonial-role">Security Operations</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The fatigue scoring is a game-changer. I used to push through warning signs — now I can see objectively when I need to rest. My health has genuinely improved."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--purple)">SR</div>
+          <div>
+            <div class="testimonial-name">S. R.</div>
+            <div class="testimonial-role">ICU Nurse</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The payroll estimator alone is worth the price. I can now plan my finances based on real shift numbers instead of guessing. Incredibly well thought out."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:var(--orange)">MC</div>
+          <div>
+            <div class="testimonial-name">M. C.</div>
+            <div class="testimonial-role">Factory Supervisor</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="tag">FAQ</div>
+      <h2 class="section-title">Common questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What platforms does Shiftly support?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Shiftly is available on iOS — iPhone and iPad — requiring iOS 16 or later. An Android version (ShiftlyGrid) is in development.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is there a subscription or recurring fee?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">No — Shiftly is a one-time purchase of $3.99. You get full access to every feature and every future update, forever. No subscription, no renewals, ever.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How do the Smart Alarms work?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Choose a date range and Shiftly finds all your upcoming shifts and creates iOS system alarms for each one automatically. You can set separate alarm times for Day shifts and Night shifts, and Shiftly handles the rest.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is my data stored in the cloud?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">No. All your shift data is stored locally on your device. ShiftlyWork does not collect, transmit, or share any of your personal or schedule data. Your privacy is fundamental to how Shiftly is designed.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I create a custom shift pattern?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Absolutely. In addition to built-in patterns (2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF, 2D·2Noon·2N·2OFF), you can create fully custom rotations with any combination of Day, Night, Noon, and Off segments in any sequence.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I export or print my calendar?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">Yes. Shiftly lets you export your calendar as a PDF or print it directly from the app via AirPrint. Great for sharing with family or keeping a paper record.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is Android coming?
+          <span class="faq-q-icon">+</span>
+        </button>
+        <div class="faq-a">ShiftlyGrid for Android is currently in development. Join the waitlist by emailing <a href="mailto:support@shiftlywork.com" style="color:var(--blue-lt)">support@shiftlywork.com</a> and we'll notify you when it's available.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="tag">Get in touch</div>
+        <h2 class="contact-title">We're here<br/>to help</h2>
+        <p class="contact-sub">Questions, feedback, or feature ideas? We read every message and typically respond within 24 hours.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉</div>
+            <a href="mailto:support@shiftlywork.com" style="color:var(--blue-lt)">support@shiftlywork.com</a>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🌐</div>
+            <a href="https://shiftlywork.com" style="color:var(--blue-lt)">shiftlywork.com</a>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Topic</label>
+          <select>
+            <option value="">Select a topic…</option>
+            <option>App Support</option>
+            <option>Feedback</option>
+            <option>Feature Request</option>
+            <option>Android Waitlist</option>
+            <option>Business Inquiry</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us how we can help…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message →</button>
+        <p id="form-success" style="display:none;color:var(--green);font-size:14px;text-align:center;margin-top:4px;">✅ Message sent! We'll get back to you within 24 hours.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <h2>Your schedule. Your control.</h2>
+    <p>Join shift workers worldwide who plan smarter with Shiftly.</p>
+    <div class="cta-banner-actions">
+      <a href="https://apps.apple.com/app/shiftly" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on App Store — $3.99
+      </a>
+      <a href="manual.html" class="btn-ghost">Read the Manual ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="font-size:16px;">
+          <img src="logo.png" alt="ShiftlyWork" style="height:32px;width:auto;" />
+        </a>
+        <p>The intelligent shift calendar for shift workers worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="manual.html">User Manual</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="https://apps.apple.com/app/shiftly">Rate the App ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="privacy.html#terms">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ShiftlyWork. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="privacy.html#terms">Terms</a>
+        <a href="manual.html">Manual</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const drawer = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', () => {
+    const open = drawer.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }
+  // Close drawer when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
+  });
+
+  // FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Contact form
+  function handleForm(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    setTimeout(() => { document.getElementById('form-success').style.display = 'none'; }, 5000);
+  }
+</script>
+
+</body>
+</html>

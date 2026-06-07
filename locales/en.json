@@ -1,0 +1,192 @@
+{
+  "code": "en",
+  "dir": "ltr",
+  "meta": {
+    "title": "Shiftly — Smarter Shifts. Better Balance.",
+    "description": "Shiftly is the intelligent shift calendar for shift workers worldwide. Auto-fill 10 years of shifts in one tap, track leave, estimate pay, and never miss a shift again. On the App Store."
+  },
+  "nav": {
+    "features": "Features",
+    "benefits": "Benefits",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "manual": "Manual",
+    "privacy": "Privacy",
+    "download": "↓ Download"
+  },
+  "hero": {
+    "badge": "Now live on the App Store · iOS 16+",
+    "title1": "Smarter shifts.",
+    "title2": "Better balance.",
+    "sub": "The intelligent shift calendar built for rotating workers worldwide. Auto-fill years of schedules in one tap, track leave, estimate pay, and never miss a shift again.",
+    "ctaPrimary": "Download on App Store — $3.99",
+    "ctaGhost": "Explore Features ↓",
+    "pills": ["iPhone & iPad", "No Subscription", "Data Stays On Device", "All Future Updates"]
+  },
+  "stats": [
+    { "num": "10 Years", "label": "Auto-fill duration" },
+    { "num": "$3.99", "label": "One-time price, forever" },
+    { "num": "4 Languages", "label": "EN · AR · ES · FR" },
+    { "num": "100% Private", "label": "No cloud, no tracking" }
+  ],
+  "features": {
+    "tag": "Features",
+    "title1": "Built for the real world",
+    "title2": "of shift work",
+    "sub": "Every feature designed around how shift workers actually live — from auto-scheduling to fatigue tracking.",
+    "items": [
+      {
+        "icon": "📅",
+        "title": "Intelligent Shift Calendar",
+        "desc": "Day, Night, Off — colour-coded across your entire month. Tap any day to see start time, end time, and duration. Override or lock any date without disrupting the rest of your pattern.",
+        "chips": ["Colour-coded shifts", "Tap for details", "Override any day", "Lock dates", "PDF export"]
+      },
+      {
+        "icon": "✨",
+        "title": "Shift Planner",
+        "desc": "Choose a rotation pattern and auto-fill up to 10 years in one tap. A live 30-day colour preview shows exactly how your shifts will look before you generate. Supports 2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF, and fully custom patterns.",
+        "chips": ["2D·2N·4OFF", "3D·3N·3OFF", "4D·4OFF", "Custom patterns", "Up to 10-year fill"]
+      },
+      {
+        "icon": "⏰",
+        "title": "Smart Shift Alarms",
+        "desc": "Pick a date range and Shiftly finds every upcoming shift and creates iOS system alarms automatically. Separate alarm times for Day shifts and Night shifts — set them once, never touch them again.",
+        "chips": ["One-tap setup", "21+ alarms at once", "Per shift type", "Native iOS alarms"]
+      },
+      {
+        "icon": "💰",
+        "title": "Payroll Estimator",
+        "desc": "See your estimated gross pay before payday. Shiftly automatically calculates base pay, night differential, weekend premiums, and overtime — all broken down from your actual shift schedule.",
+        "chips": ["Night differential", "Weekend premium", "Overtime", "Manual bonuses", "Hourly rate config"]
+      },
+      {
+        "icon": "🧠",
+        "title": "Fatigue Guardian",
+        "desc": "AI-powered sleep and fatigue analysis based on your real shift pattern. Monitors average sleep, consecutive night runs, and sleep debt — then gives you personalised recommendations before burnout hits.",
+        "chips": ["Fatigue score", "Sleep debt tracking", "Consecutive nights", "Wellness tips"]
+      },
+      {
+        "icon": "✈️",
+        "title": "Leave & Availability",
+        "desc": "Track Annual Leave, Comp Off, and Standby duties with a full balance overview for the year. Log swap requests, override rotations, and keep everything in one place.",
+        "chips": ["Annual leave", "Comp off", "Standby duties", "Swap log", "Balance overview"]
+      },
+      {
+        "icon": "🔄",
+        "title": "Custom Rotation Patterns",
+        "desc": "Every rotation is different. Build a fully custom pattern with any combination of Day, Night, Noon, and Off segments in any sequence. Save multiple patterns and switch between them instantly.",
+        "chips": ["Unlimited segments", "Live preview", "Save & name patterns", "Quick switch"]
+      }
+    ]
+  },
+  "why": {
+    "tag": "Why Shiftly",
+    "title1": "Your schedule,",
+    "title2": "finally in your hands",
+    "sub": "Shift work disrupts sleep, health, and planning. Shiftly gives you the tools to stay ahead.",
+    "cards": [
+      { "num": "01", "title": "Fill 10 years in seconds", "desc": "Choose your rotation pattern once. Shiftly auto-fills your entire calendar — no manual entry, ever." },
+      { "num": "02", "title": "Never miss a shift alarm", "desc": "One tap creates perfectly timed alarms for every upcoming shift. Fully automatic, always accurate." },
+      { "num": "03", "title": "Understand your wellbeing", "desc": "The Fatigue Guardian analyses your pattern and gives you personalised recommendations before burnout hits." },
+      { "num": "04", "title": "Your data stays with you", "desc": "All data is stored locally on your device. Shiftly never collects, shares, or monetises your schedule." }
+    ]
+  },
+  "about": {
+    "tag": "About ShiftlyWork",
+    "title1": "Built by a shift worker,",
+    "title2": "for shift workers",
+    "p1": "Shiftly was created by someone with 25 years of experience in 24/7 airport operations — the kind of environment where shift timing is critical and fatigue has real consequences.",
+    "p2": "Every feature in Shiftly solves a problem we personally experienced: forgetting a shift, miscalculating leave, or not knowing how tired we actually were. This is software built with empathy.",
+    "contact": "✉ Contact the team →",
+    "stats": [
+      { "icon": "🛫", "val": "25 Years", "label": "Airport Operations" },
+      { "icon": "🌍", "val": "Worldwide", "label": "EN · AR · ES · FR" },
+      { "icon": "📱", "val": "iOS 16+", "label": "iPhone · iPad" },
+      { "icon": "🔒", "val": "100% Private", "label": "No accounts · No cloud" }
+    ]
+  },
+  "pricing": {
+    "tag": "Pricing",
+    "title1": "One app. One price.",
+    "title2": "All features. Forever.",
+    "sub": "No subscriptions. No tiers. No recurring charges. While competitors charge $3–8/month, Shiftly is yours for life for a single $3.99 payment.",
+    "badge": "👑 Lifetime Access",
+    "priceNote": "One-time payment · No subscription · Own it forever",
+    "features": [
+      "Shift Calendar — full month view",
+      "Shift Planner — auto-fill up to 10 years",
+      "Smart Shift Alarms",
+      "Payroll Estimator",
+      "Fatigue Guardian (AI analysis)",
+      "Leave & Availability tracker",
+      "Swap Log & Date overrides",
+      "PDF export & AirPrint",
+      "EN · Arabic · Spanish · French",
+      "All future updates included"
+    ],
+    "cta": "Download on App Store — $3.99",
+    "note": "Secure purchase through Apple · iPhone & iPad · iOS 16+"
+  },
+  "testimonials": {
+    "tag": "Reviews",
+    "title1": "Trusted by teams",
+    "title2": "around the world",
+    "items": [
+      { "text": "“Finally an app that understands rotating shifts. The auto-fill saved me hours every month. The alarm system is absolutely brilliant — I haven't missed a shift since.”", "initials": "KA", "name": "K. A.", "role": "Security Operations" },
+      { "text": "“The fatigue scoring is a game-changer. I used to push through warning signs — now I can see objectively when I need to rest. My health has genuinely improved.”", "initials": "SR", "name": "S. R.", "role": "ICU Nurse" },
+      { "text": "“The payroll estimator alone is worth the price. I can now plan my finances based on real shift numbers instead of guessing. Incredibly well thought out.”", "initials": "MC", "name": "M. C.", "role": "Factory Supervisor" }
+    ]
+  },
+  "faq": {
+    "tag": "FAQ",
+    "title": "Common questions",
+    "items": [
+      { "q": "What platforms does Shiftly support?", "a": "Shiftly is available on iOS — iPhone and iPad — requiring iOS 16 or later. An Android version (ShiftlyGrid) is in development." },
+      { "q": "Is there a subscription or recurring fee?", "a": "No — Shiftly is a one-time purchase of $3.99. You get full access to every feature and every future update, forever. No subscription, no renewals, ever." },
+      { "q": "How do the Smart Alarms work?", "a": "Choose a date range and Shiftly finds all your upcoming shifts and creates iOS system alarms for each one automatically. You can set separate alarm times for Day shifts and Night shifts, and Shiftly handles the rest." },
+      { "q": "Is my data stored in the cloud?", "a": "No. All your shift data is stored locally on your device. ShiftlyWork does not collect, transmit, or share any of your personal or schedule data. Your privacy is fundamental to how Shiftly is designed." },
+      { "q": "Can I create a custom shift pattern?", "a": "Absolutely. In addition to built-in patterns (2D·2N·4OFF, 3D·3N·3OFF, 4D·4OFF, 2D·2Noon·2N·2OFF), you can create fully custom rotations with any combination of Day, Night, Noon, and Off segments in any sequence." },
+      { "q": "Can I export or print my calendar?", "a": "Yes. Shiftly lets you export your calendar as a PDF or print it directly from the app via AirPrint. Great for sharing with family or keeping a paper record." },
+      { "q": "Is Android coming?", "a": "ShiftlyGrid for Android is currently in development. Join the waitlist by emailing <a href=\"mailto:support@shiftlywork.com\" style=\"color:var(--blue-lt)\">support@shiftlywork.com</a> and we'll notify you when it's available." }
+    ]
+  },
+  "contact": {
+    "tag": "Get in touch",
+    "title1": "We're here",
+    "title2": "to help",
+    "sub": "Questions, feedback, or feature ideas? We read every message and typically respond within 24 hours.",
+    "emailLabel": "support@shiftlywork.com",
+    "siteLabel": "shiftlywork.com",
+    "form": {
+      "name": "Name",
+      "namePh": "Your name",
+      "email": "Email",
+      "emailPh": "you@example.com",
+      "topic": "Topic",
+      "topicSelect": "Select a topic…",
+      "topicOptions": ["App Support", "Feedback", "Feature Request", "Android Waitlist", "Business Inquiry", "Other"],
+      "message": "Message",
+      "messagePh": "Tell us how we can help…",
+      "submit": "Send Message →",
+      "success": "✅ Message sent! We'll get back to you within 24 hours."
+    }
+  },
+  "cta": {
+    "title": "Your schedule. Your control.",
+    "sub": "Join shift workers worldwide who plan smarter with Shiftly.",
+    "primary": "Download on App Store — $3.99",
+    "secondary": "Read the Manual ↗"
+  },
+  "footer": {
+    "tagline": "The intelligent shift calendar for shift workers worldwide.",
+    "productTitle": "Product",
+    "product": ["Features", "Pricing", "Reviews", "FAQ"],
+    "supportTitle": "Support",
+    "support": ["User Manual", "Contact Us", "Rate the App ↗"],
+    "legalTitle": "Legal",
+    "legal": ["Privacy Policy", "Terms of Use"],
+    "copyright": "© 2026 ShiftlyWork. All rights reserved.",
+    "links": ["Privacy", "Terms", "Manual", "Contact"]
+  },
+  "lang": { "name": "Language", "en": "English", "ar": "العربية", "es": "Español", "fr": "Français" }
+}

@@ -1,0 +1,193 @@
+{
+  "code": "fr",
+  "dir": "ltr",
+  "meta": {
+    "title": "Shiftly — Des horaires plus intelligents. Un meilleur équilibre.",
+    "description": "Shiftly est le calendrier de quarts de travail intelligent pour les travailleurs postés du monde entier. Remplissez 10 ans de quarts en un geste, suivez vos congés, estimez votre salaire et ne manquez plus jamais un quart. Disponible sur l'App Store.",
+    "_": ""
+  },
+  "nav": {
+    "features": "Fonctionnalités",
+    "benefits": "Avantages",
+    "pricing": "Tarif",
+    "faq": "FAQ",
+    "manual": "Manuel",
+    "privacy": "Confidentialité",
+    "download": "↓ Télécharger"
+  },
+  "hero": {
+    "badge": "Désormais sur l'App Store · iOS 16+",
+    "title1": "Des horaires plus intelligents.",
+    "title2": "Un meilleur équilibre.",
+    "sub": "Le calendrier de quarts intelligent conçu pour les travailleurs postés du monde entier. Remplissez des années d'horaires en un geste, suivez vos congés, estimez votre salaire et ne manquez plus jamais un quart.",
+    "ctaPrimary": "Télécharger sur l'App Store — $3.99",
+    "ctaGhost": "Découvrir les fonctionnalités ↓",
+    "pills": ["iPhone et iPad", "Sans abonnement", "Données conservées sur l'appareil", "Toutes les futures mises à jour"]
+  },
+  "stats": [
+    { "num": "10 ans", "label": "Durée de remplissage automatique" },
+    { "num": "$3.99", "label": "Prix unique, à vie" },
+    { "num": "4 langues", "label": "EN · AR · ES · FR" },
+    { "num": "100 % privé", "label": "Pas de cloud, pas de suivi" }
+  ],
+  "features": {
+    "tag": "Fonctionnalités",
+    "title1": "Conçu pour la réalité",
+    "title2": "du travail posté",
+    "sub": "Chaque fonctionnalité est pensée pour la vie réelle des travailleurs postés — de la planification automatique au suivi de la fatigue.",
+    "items": [
+      {
+        "icon": "📅",
+        "title": "Calendrier de quarts intelligent",
+        "desc": "Jour, Nuit, Repos — en couleur sur tout votre mois. Touchez n'importe quel jour pour voir l'heure de début, de fin et la durée. Modifiez ou verrouillez n'importe quelle date sans perturber le reste de votre cycle.",
+        "chips": ["Quarts en couleur", "Détails en un geste", "Modifier n'importe quel jour", "Verrouiller des dates", "Export PDF"]
+      },
+      {
+        "icon": "✨",
+        "title": "Planificateur de quarts",
+        "desc": "Choisissez un cycle de rotation et remplissez jusqu'à 10 ans en un seul geste. Un aperçu en couleur sur 30 jours vous montre exactement à quoi ressembleront vos quarts avant la génération. Compatible avec 2J·2N·4OFF, 3J·3N·3OFF, 4J·4OFF et les cycles entièrement personnalisés.",
+        "chips": ["2J·2N·4OFF", "3J·3N·3OFF", "4J·4OFF", "Cycles personnalisés", "Remplissage jusqu'à 10 ans"]
+      },
+      {
+        "icon": "⏰",
+        "title": "Alarmes de quarts intelligentes",
+        "desc": "Choisissez une période et Shiftly repère tous vos prochains quarts et crée automatiquement des alarmes système iOS. Des horaires d'alarme distincts pour les quarts de jour et de nuit — réglez-les une fois pour toutes.",
+        "chips": ["Configuration en un geste", "Plus de 21 alarmes à la fois", "Par type de quart", "Alarmes iOS natives"]
+      },
+      {
+        "icon": "💰",
+        "title": "Estimateur de salaire",
+        "desc": "Découvrez votre salaire brut estimé avant la paie. Shiftly calcule automatiquement le salaire de base, la prime de nuit, les majorations de week-end et les heures supplémentaires — le tout détaillé à partir de votre horaire réel.",
+        "chips": ["Prime de nuit", "Majoration de week-end", "Heures supplémentaires", "Primes manuelles", "Configuration du taux horaire"]
+      },
+      {
+        "icon": "🧠",
+        "title": "Gardien de la fatigue",
+        "desc": "Analyse du sommeil et de la fatigue par IA basée sur votre cycle de quarts réel. Suit le sommeil moyen, les nuits consécutives et la dette de sommeil, puis vous propose des recommandations personnalisées avant l'épuisement.",
+        "chips": ["Score de fatigue", "Suivi de la dette de sommeil", "Nuits consécutives", "Conseils bien-être"]
+      },
+      {
+        "icon": "✈️",
+        "title": "Congés et disponibilités",
+        "desc": "Suivez les congés annuels, les récupérations et les astreintes avec une vue d'ensemble complète du solde annuel. Enregistrez les échanges de quarts, modifiez les rotations et gardez tout au même endroit.",
+        "chips": ["Congés annuels", "Récupération", "Astreintes", "Journal des échanges", "Vue d'ensemble du solde"]
+      },
+      {
+        "icon": "🔄",
+        "title": "Cycles de rotation personnalisés",
+        "desc": "Chaque rotation est différente. Créez un cycle entièrement personnalisé en combinant des segments Jour, Nuit, Midi et Repos dans n'importe quel ordre. Enregistrez plusieurs cycles et passez de l'un à l'autre instantanément.",
+        "chips": ["Segments illimités", "Aperçu en direct", "Enregistrer et nommer des cycles", "Changement rapide"]
+      }
+    ]
+  },
+  "why": {
+    "tag": "Pourquoi Shiftly",
+    "title1": "Votre planning,",
+    "title2": "enfin entre vos mains",
+    "sub": "Le travail posté perturbe le sommeil, la santé et la planification. Shiftly vous donne les outils pour garder une longueur d'avance.",
+    "cards": [
+      { "num": "01", "title": "Remplissez 10 ans en quelques secondes", "desc": "Choisissez votre cycle de rotation une seule fois. Shiftly remplit automatiquement tout votre calendrier — sans aucune saisie manuelle." },
+      { "num": "02", "title": "Ne manquez plus jamais une alarme", "desc": "Un geste suffit pour créer des alarmes parfaitement réglées pour chaque prochain quart. Entièrement automatique et toujours précis." },
+      { "num": "03", "title": "Comprenez votre bien-être", "desc": "Le Gardien de la fatigue analyse votre cycle et vous propose des recommandations personnalisées avant l'épuisement." },
+      { "num": "04", "title": "Vos données restent les vôtres", "desc": "Toutes les données sont stockées localement sur votre appareil. Shiftly ne collecte, ne partage et ne monétise jamais votre planning." }
+    ]
+  },
+  "about": {
+    "tag": "À propos de ShiftlyWork",
+    "title1": "Conçue par un travailleur posté,",
+    "title2": "pour les travailleurs postés",
+    "p1": "Shiftly a été créée par une personne forte de 25 ans d'expérience dans les opérations aéroportuaires 24h/24 et 7j/7 — un environnement où la précision des horaires est cruciale et où la fatigue a de réelles conséquences.",
+    "p2": "Chaque fonctionnalité de Shiftly résout un problème vécu personnellement : oublier un quart, mal calculer un congé, ou ne pas savoir à quel point on est réellement fatigué. C'est un logiciel conçu avec empathie.",
+    "contact": "✉ Contacter l'équipe →",
+    "stats": [
+      { "icon": "🛫", "val": "25 ans", "label": "Opérations aéroportuaires" },
+      { "icon": "🌍", "val": "Dans le monde entier", "label": "EN · AR · ES · FR" },
+      { "icon": "📱", "val": "iOS 16+", "label": "iPhone · iPad" },
+      { "icon": "🔒", "val": "100 % privé", "label": "Sans compte · Sans cloud" }
+    ]
+  },
+  "pricing": {
+    "tag": "Tarif",
+    "title1": "Une appli. Un prix.",
+    "title2": "Toutes les fonctionnalités. Pour toujours.",
+    "sub": "Pas d'abonnement. Pas de paliers. Pas de frais récurrents. Alors que la concurrence facture 3 à 8 $/mois, Shiftly est à vous à vie pour un paiement unique de 3,99 $.",
+    "badge": "👑 Accès à vie",
+    "priceNote": "Paiement unique · Sans abonnement · À vous pour toujours",
+    "features": [
+      "Calendrier de quarts — vue mensuelle complète",
+      "Planificateur de quarts — remplissage automatique jusqu'à 10 ans",
+      "Alarmes de quarts intelligentes",
+      "Estimateur de salaire",
+      "Gardien de la fatigue (analyse par IA)",
+      "Suivi des congés et disponibilités",
+      "Journal des échanges et modifications de dates",
+      "Export PDF et AirPrint",
+      "EN · arabe · espagnol · français",
+      "Toutes les futures mises à jour incluses"
+    ],
+    "cta": "Télécharger sur l'App Store — $3.99",
+    "note": "Achat sécurisé via Apple · iPhone et iPad · iOS 16+"
+  },
+  "testimonials": {
+    "tag": "Avis",
+    "title1": "La confiance d'équipes",
+    "title2": "partout dans le monde",
+    "items": [
+      { "text": "« Enfin une appli qui comprend les rotations de quarts. Le remplissage automatique me fait gagner des heures chaque mois. Le système d'alarmes est tout simplement brillant — je n'ai plus manqué un seul quart depuis. »", "initials": "KA", "name": "K. A.", "role": "Opérations de sécurité" },
+      { "text": "« Le score de fatigue change vraiment la donne. Avant, j'ignorais les signaux d'alerte ; maintenant je vois objectivement quand j'ai besoin de repos. Ma santé s'est nettement améliorée. »", "initials": "SR", "name": "S. R.", "role": "Infirmière en soins intensifs" },
+      { "text": "« L'estimateur de salaire justifie à lui seul le prix. Je peux désormais planifier mes finances avec de vrais chiffres au lieu de deviner. C'est incroyablement bien pensé. »", "initials": "MC", "name": "M. C.", "role": "Superviseur d'usine" }
+    ]
+  },
+  "faq": {
+    "tag": "FAQ",
+    "title": "Questions fréquentes",
+    "items": [
+      { "q": "Quelles plateformes Shiftly prend-elle en charge ?", "a": "Shiftly est disponible sur iOS — iPhone et iPad — et nécessite iOS 16 ou version ultérieure. Une version Android (ShiftlyGrid) est en cours de développement." },
+      { "q": "Y a-t-il un abonnement ou des frais récurrents ?", "a": "Non — Shiftly s'achète une seule fois pour 3,99 $. Vous obtenez un accès complet à toutes les fonctionnalités et à toutes les futures mises à jour, pour toujours. Aucun abonnement, aucun renouvellement." },
+      { "q": "Comment fonctionnent les alarmes intelligentes ?", "a": "Choisissez une période et Shiftly repère tous vos prochains quarts et crée automatiquement une alarme système iOS pour chacun d'eux. Vous pouvez définir des horaires d'alarme distincts pour les quarts de jour et de nuit, et Shiftly se charge du reste." },
+      { "q": "Mes données sont-elles stockées dans le cloud ?", "a": "Non. Toutes vos données de quarts sont stockées localement sur votre appareil. ShiftlyWork ne collecte, ne transmet ni ne partage aucune de vos données personnelles ou de planning. Votre confidentialité est au cœur de la conception de Shiftly." },
+      { "q": "Puis-je créer un cycle de quarts personnalisé ?", "a": "Absolument. En plus des cycles intégrés (2J·2N·4OFF, 3J·3N·3OFF, 4J·4OFF, 2J·2Midi·2N·2OFF), vous pouvez créer des rotations entièrement personnalisées en combinant des segments Jour, Nuit, Midi et Repos dans n'importe quel ordre." },
+      { "q": "Puis-je exporter ou imprimer mon calendrier ?", "a": "Oui. Shiftly vous permet d'exporter votre calendrier en PDF ou de l'imprimer directement depuis l'appli via AirPrint. Idéal pour le partager en famille ou conserver une trace papier." },
+      { "q": "Une version Android est-elle prévue ?", "a": "ShiftlyGrid pour Android est actuellement en développement. Inscrivez-vous sur la liste d'attente en écrivant à <a href=\"mailto:support@shiftlywork.com\" style=\"color:var(--blue-lt)\">support@shiftlywork.com</a> et nous vous préviendrons dès sa disponibilité." }
+    ]
+  },
+  "contact": {
+    "tag": "Contactez-nous",
+    "title1": "Nous sommes là",
+    "title2": "pour vous aider",
+    "sub": "Des questions, des retours ou des idées de fonctionnalités ? Nous lisons chaque message et répondons généralement sous 24 heures.",
+    "emailLabel": "support@shiftlywork.com",
+    "siteLabel": "shiftlywork.com",
+    "form": {
+      "name": "Nom",
+      "namePh": "Votre nom",
+      "email": "E-mail",
+      "emailPh": "vous@exemple.com",
+      "topic": "Sujet",
+      "topicSelect": "Sélectionnez un sujet…",
+      "topicOptions": ["Assistance application", "Retour d'expérience", "Demande de fonctionnalité", "Liste d'attente Android", "Demande commerciale", "Autre"],
+      "message": "Message",
+      "messagePh": "Dites-nous comment nous pouvons vous aider…",
+      "submit": "Envoyer le message →",
+      "success": "✅ Message envoyé ! Nous vous répondrons sous 24 heures."
+    }
+  },
+  "cta": {
+    "title": "Votre planning. Votre contrôle.",
+    "sub": "Rejoignez les travailleurs postés du monde entier qui planifient plus intelligemment avec Shiftly.",
+    "primary": "Télécharger sur l'App Store — $3.99",
+    "secondary": "Lire le manuel ↗"
+  },
+  "footer": {
+    "tagline": "Le calendrier de quarts intelligent pour les travailleurs postés du monde entier.",
+    "productTitle": "Produit",
+    "product": ["Fonctionnalités", "Tarif", "Avis", "FAQ"],
+    "supportTitle": "Assistance",
+    "support": ["Manuel utilisateur", "Nous contacter", "Noter l'appli ↗"],
+    "legalTitle": "Mentions légales",
+    "legal": ["Politique de confidentialité", "Conditions d'utilisation"],
+    "copyright": "© 2026 ShiftlyWork. Tous droits réservés.",
+    "links": ["Confidentialité", "Conditions", "Manuel", "Contact"]
+  },
+  "lang": { "name": "Langue", "en": "English", "ar": "العربية", "es": "Español", "fr": "Français" }
+}

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Shiftly by ShiftlyWork</title>
+<meta name="description" content="Shiftly Privacy Policy — all your data stays on your device. We never collect, share, or sell personal information. Full privacy policy for the Shiftly iOS app.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shiftlywork.com/privacy.html">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== TOKENS ===================== */
+:root {
+  --navy:   #070b17;
+  --navy2:  #0c1020;
+  --teal:   #00d4c2;
+  --blue:   #2563eb;
+  --orange: #f59e0b;
+  --green:  #10b981;
+  --white:  #ffffff;
+  --muted:  rgba(255,255,255,.55);
+  --border: rgba(255,255,255,.07);
+  --border2:rgba(255,255,255,.12);
+  --font:   'Bricolage Grotesque', sans-serif;
+  --body:   'Plus Jakarta Sans', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--body);
+  background: var(--navy);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+}
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+/* SKIP LINK */
+.skip-link {
+  position: absolute; top: -100%; left: 16px;
+  background: var(--teal); color: #000; font-weight: 700;
+  padding: 8px 16px; border-radius: 6px; z-index: 9999;
+  transition: top .2s;
+}
+.skip-link:focus { top: 16px; }
+
+/* ===================== NAV ===================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  height: 64px;
+  background: rgba(7,11,23,.95);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; color: inherit;
+}
+.nav-logo-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo-icon svg { width: 16px; height: 16px; }
+.nav-logo-text {
+  font-family: var(--font); font-weight: 800; font-size: 17px;
+  letter-spacing: -0.04em;
+}
+.nav-logo-text span { color: var(--teal); }
+.nav-back {
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  padding: 7px 16px; border-radius: 100px;
+  transition: all .2s; text-decoration: none;
+}
+.nav-back:hover { background: rgba(255,255,255,.1); color: #fff; text-decoration: none; }
+
+/* ===================== LAYOUT ===================== */
+.page-wrap {
+  display: flex;
+  min-height: 100vh;
+  padding-top: 64px;
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+  width: 240px; flex-shrink: 0;
+  position: fixed; top: 64px; left: 0;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 28px 0 40px;
+  border-right: 1px solid var(--border);
+  background: var(--navy);
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,.08); border-radius: 2px; }
+.sb-section { margin-bottom: 24px; padding: 0 16px; }
+.sb-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
+  text-transform: uppercase; color: rgba(255,255,255,.3);
+  display: block; margin-bottom: 8px; padding: 0 8px;
+}
+.sb-link {
+  display: block; font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,.5); padding: 7px 10px;
+  border-radius: 8px; transition: all .18s;
+  text-decoration: none; line-height: 1.4;
+}
+.sb-link:hover { color: #fff; background: rgba(255,255,255,.06); text-decoration: none; }
+.sb-link.act { color: var(--teal); background: rgba(0,212,194,.08); font-weight: 600; }
+
+/* ===================== CONTENT ===================== */
+.content {
+  margin-left: 240px;
+  flex: 1;
+  padding: 52px 64px 100px;
+  max-width: 960px;
+}
+.doc-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 14px;
+}
+.doc-eyebrow::before {
+  content: ''; width: 18px; height: 1.5px;
+  background: var(--teal); border-radius: 2px; flex-shrink: 0;
+}
+h1 {
+  font-family: var(--font); font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 1.1;
+  margin-bottom: 12px;
+}
+.doc-meta {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 40px; padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.doc-meta .dot { color: rgba(255,255,255,.2); }
+
+/* Summary hero */
+.privacy-hero {
+  background: linear-gradient(135deg, rgba(0,212,194,.08) 0%, rgba(37,99,235,.05) 100%);
+  border: 1px solid rgba(0,212,194,.2);
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 48px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.privacy-hero-icon {
+  width: 44px; height: 44px;
+  background: rgba(0,212,194,.12);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.privacy-hero-title {
+  font-family: var(--font); font-size: 17px; font-weight: 800;
+  letter-spacing: -0.03em; margin-bottom: 8px;
+}
+.privacy-hero-points {
+  display: flex; flex-direction: column; gap: 6px;
+  list-style: none; padding: 0;
+}
+.privacy-hero-points li {
+  font-size: 14px; color: rgba(255,255,255,.75);
+  display: flex; align-items: center; gap: 8px;
+}
+.privacy-hero-points li::before {
+  content: '✓';
+  color: var(--teal); font-weight: 700; font-size: 12px; flex-shrink: 0;
+}
+
+h2 {
+  font-family: var(--font); font-size: 20px; font-weight: 800;
+  letter-spacing: -0.03em; margin: 44px 0 14px;
+  color: #fff;
+  display: flex; align-items: center; gap: 10px;
+  scroll-margin-top: 80px;
+}
+h2::before {
+  content: ''; width: 3px; height: 20px;
+  background: var(--teal); border-radius: 2px; flex-shrink: 0;
+}
+h3 {
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  margin: 24px 0 8px; color: #fff;
+}
+p { font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.8; margin-bottom: 14px; }
+p strong { color: #fff; }
+p a { color: var(--teal); }
+
+ul, ol {
+  margin: 10px 0 16px 0;
+  padding-left: 22px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+li { font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.75; }
+li strong { color: #fff; }
+
+hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+/* DATA TABLE */
+.data-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px; margin: 20px 0;
+}
+.data-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 16px;
+}
+.data-card-icon { font-size: 20px; margin-bottom: 8px; }
+.data-card-title { font-family: var(--font); font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.data-card-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+.data-card-stored { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 8px; }
+.stored-local { color: var(--green); }
+.stored-local::before { content: '●'; margin-right: 2px; }
+.stored-never { color: rgba(255,255,255,.3); }
+.stored-never::before { content: '○'; margin-right: 2px; }
+
+/* CALLOUTS */
+.tip, .info {
+  display: flex; gap: 14px; align-items: flex-start;
+  border-radius: 14px; padding: 18px 20px; margin: 20px 0;
+}
+.tip  { background: rgba(0,212,194,.07); border: 1px solid rgba(0,212,194,.2); }
+.info { background: rgba(37,99,235,.08); border: 1px solid rgba(37,99,235,.2); }
+.callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.callout-text { font-size: 14px; color: rgba(255,255,255,.8); line-height: 1.7; }
+.callout-text strong { color: #fff; }
+
+/* CONTACT SECTION */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px; margin: 20px 0;
+}
+.contact-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 20px;
+  display: flex; gap: 14px; align-items: center;
+  transition: border-color .2s;
+}
+.contact-card:hover { border-color: var(--border2); }
+.contact-card-icon {
+  width: 38px; height: 38px;
+  background: rgba(0,212,194,.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.contact-card-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+.contact-card-val { font-size: 13px; font-weight: 600; }
+.contact-card-val a { color: var(--teal); }
+.contact-card-val a:hover { text-decoration: underline; }
+
+/* FOOTER */
+.doc-footer {
+  margin-top: 60px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 13px; color: var(--muted);
+  display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+}
+.doc-footer a { color: rgba(255,255,255,.4); transition: color .2s; }
+.doc-footer a:hover { color: var(--teal); text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .content { margin-left: 0; padding: 32px 24px 80px; }
+  .data-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .data-grid { grid-template-columns: 1fr; }
+  .privacy-hero { flex-direction: column; }
+  h1 { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+}
+
+/* ===================== LANGUAGE SWITCHER ===================== */
+.lang-switcher {
+  position: relative;
+  flex-shrink: 0;
+}
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 8px;
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.lang-btn:hover { color: #fff; background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.12); }
+.lang-btn .lang-caret { font-size: 9px; opacity: .6; transition: transform .2s; }
+.lang-btn.open .lang-caret { transform: rotate(180deg); }
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(12,16,32,.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 6px;
+  min-width: 160px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.6);
+  z-index: 600;
+  display: none;
+  animation: langMenuIn .15s ease;
+}
+.lang-menu.open { display: block; }
+@keyframes langMenuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,.55);
+  cursor: pointer;
+  transition: all .15s;
+  border: none;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+}
+.lang-option:hover { color: #fff; background: rgba(255,255,255,.07); }
+.lang-option.active { color: #00d4c2; background: rgba(0,212,194,.08); font-weight: 600; }
+.lang-option .lang-flag { font-size: 16px; flex-shrink: 0; }
+.lang-option .lang-native { font-size: 11px; color: rgba(255,255,255,.55); margin-left: auto; opacity: .7; }
+.lang-option.active .lang-native { color: #00d4c2; opacity: 1; }
+[dir="rtl"] .lang-menu { right: auto; left: 0; }
+[dir="rtl"] nav { direction: rtl; }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<nav role="navigation" aria-label="Site navigation">
+  <a href="index.html" class="nav-logo" aria-label="Shiftly home">
+    <div class="nav-logo-icon" aria-hidden="true">
+      <img src="data:image/png;base64,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" alt="ShiftlyWork logo" width="34" height="34" style="border-radius:9px;display:block;width:34px;height:34px;">
+    </div>
+    <span class="nav-logo-text">Shiftly<span>Work</span></span>
+  </a>
+  <div class="lang-switcher" style="margin-left:auto;">
+    <button class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="langLabel">EN</span>
+      <span class="lang-caret">▼</span>
+    </button>
+    <div class="lang-menu" id="langMenu" role="listbox">
+      <button class="lang-option active" data-lang="en" role="option" aria-selected="true"><span class="lang-flag">🇬🇧</span><span>English</span><span class="lang-native">EN</span></button>
+      <button class="lang-option" data-lang="ar" role="option" aria-selected="false"><span class="lang-flag">🇦🇪</span><span>Arabic</span><span class="lang-native">عربي</span></button>
+      <button class="lang-option" data-lang="es" role="option" aria-selected="false"><span class="lang-flag">🇪🇸</span><span>Spanish</span><span class="lang-native">ES</span></button>
+      <button class="lang-option" data-lang="fr" role="option" aria-selected="false"><span class="lang-flag">🇫🇷</span><span>French</span><span class="lang-native">FR</span></button>
+    </div>
+  </div>
+  <a href="index.html" class="nav-back" aria-label="Return to homepage">← Back to Home</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" role="complementary" aria-label="Privacy policy navigation">
+    <div class="sb-section">
+      <span class="sb-title">Privacy Policy</span>
+      <a href="#overview"    class="sb-link act">Overview</a>
+      <a href="#data"        class="sb-link">Data We Handle</a>
+      <a href="#local"       class="sb-link">Local Storage</a>
+      <a href="#healthkit"   class="sb-link">Apple HealthKit</a>
+      <a href="#alarms"      class="sb-link">Alarms &amp; Notifications</a>
+      <a href="#purchases"   class="sb-link">In-App Purchases</a>
+      <a href="#third-party" class="sb-link">Third-Party Services</a>
+      <a href="#analytics"   class="sb-link">Analytics &amp; Tracking</a>
+      <a href="#children"    class="sb-link">Children's Privacy</a>
+      <a href="#deletion"    class="sb-link">Data Deletion</a>
+      <a href="#your-rights" class="sb-link">Your Rights</a>
+      <a href="#changes"     class="sb-link">Policy Changes</a>
+      <a href="#contact"     class="sb-link">Contact</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content" id="main-content">
+
+    <span class="doc-eyebrow">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="doc-meta">
+      <span>Last updated: June 2026</span>
+      <span class="dot">·</span>
+      <span>ShiftlyWork</span>
+      <span class="dot">·</span>
+      <span>Applies to: Shiftly iOS App</span>
+    </p>
+
+    <!-- HERO SUMMARY -->
+    <div class="privacy-hero" role="region" aria-labelledby="privacy-summary-title">
+      <div class="privacy-hero-icon" aria-hidden="true">🔒</div>
+      <div>
+        <div class="privacy-hero-title" id="privacy-summary-title">The short version — your privacy in plain language</div>
+        <ul class="privacy-hero-points" role="list">
+          <li>Shiftly stores all your data locally on your device — nothing leaves your phone</li>
+          <li>We collect zero personal data — no names, email addresses, or identifiers</li>
+          <li>No accounts required, no sign-in, no cloud sync</li>
+          <li>No third-party analytics, advertising SDKs, or tracking tools</li>
+          <li>Apple Health data (if granted) is read locally and never transmitted</li>
+          <li>To delete all your data, simply delete the app</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">1. Overview</h2>
+    <p><strong>ShiftlyWork</strong> ("we", "our", "us") is the developer and publisher of the <strong>Shiftly iOS application</strong> ("the App"). This Privacy Policy describes how the App handles your information.</p>
+    <p>We designed Shiftly with a privacy-first architecture. The App operates entirely offline. No user data is transmitted to our servers — because we don't have servers that handle user data. Every piece of information the App touches stays on your device, under your control.</p>
+    <p>This policy applies to all users of the Shiftly iOS application available on the Apple App Store.</p>
+
+    <!-- DATA WE HANDLE -->
+    <h2 id="data">2. Data We Handle</h2>
+    <p>The following data is created and stored <strong>exclusively on your device</strong>. None of it is collected by ShiftlyWork or transmitted over the internet.</p>
+
+    <div class="data-grid" role="list">
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">📅</div>
+        <div class="data-card-title">Shift Calendar Data</div>
+        <div class="data-card-desc">Shift types, start/end times, rotation patterns, date overrides, and locked dates.</div>
+        <div class="data-card-stored stored-local">Stored locally only</div>
+      </div>
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">✈️</div>
+        <div class="data-card-title">Leave Records</div>
+        <div class="data-card-desc">Annual leave, comp off, and standby entries with dates and notes.</div>
+        <div class="data-card-stored stored-local">Stored locally only</div>
+      </div>
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">💰</div>
+        <div class="data-card-title">Payroll Settings</div>
+        <div class="data-card-desc">Hourly rate, differential percentages, and bonus entries you enter for estimation.</div>
+        <div class="data-card-stored stored-local">Stored locally only</div>
+      </div>
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">⚙️</div>
+        <div class="data-card-title">App Preferences</div>
+        <div class="data-card-desc">Language, time format, colour theme, alarm offsets, and other settings.</div>
+        <div class="data-card-stored stored-local">Stored locally only</div>
+      </div>
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">❤️</div>
+        <div class="data-card-title">Sleep Data (Optional)</div>
+        <div class="data-card-desc">Read from Apple HealthKit only if you grant permission. Used for Fatigue Guardian analysis.</div>
+        <div class="data-card-stored stored-local">Read locally, never transmitted</div>
+      </div>
+      <div class="data-card" role="listitem">
+        <div class="data-card-icon">🚫</div>
+        <div class="data-card-title">Personal Identifiers</div>
+        <div class="data-card-desc">Name, email, location, device ID, IP address — none of these are collected.</div>
+        <div class="data-card-stored stored-never">Never collected</div>
+      </div>
+    </div>
+
+    <!-- LOCAL STORAGE -->
+    <h2 id="local">3. Local Storage &amp; Security</h2>
+    <p>All App data is stored using <strong>iOS secure local storage</strong> (UserDefaults and Core Data with iOS data protection). This means your data is protected by your device's passcode/Face ID encryption, enforced by iOS itself.</p>
+    <p>Data is scoped to the Shiftly app sandbox. Other apps cannot access your Shiftly data, and Shiftly cannot access data from other apps (except Apple Health, with your explicit permission).</p>
+
+    <div class="tip">
+      <span class="callout-icon">🔐</span>
+      <div class="callout-text"><strong>Your data, your device.</strong> If you delete Shiftly from your iPhone or iPad, all associated data is permanently removed. There is no cloud copy. If you want to transfer data to a new device, you can restore from an iCloud or local iPhone backup — this is handled entirely by iOS and Apple's systems, not by ShiftlyWork.</div>
+    </div>
+
+    <!-- HEALTHKIT -->
+    <h2 id="healthkit">4. Apple HealthKit</h2>
+    <p>The <strong>Fatigue Guardian</strong> feature can optionally read sleep analysis data from Apple HealthKit to provide more accurate fatigue scores and wellness recommendations.</p>
+    <p>Health data access is <strong>entirely optional</strong>. The Fatigue Guardian functions without Health access, using shift pattern data alone. If you grant permission:</p>
+    <ul>
+      <li>Sleep analysis data is read <strong>locally on your device</strong> to calculate your fatigue score.</li>
+      <li>Health data is <strong>never stored persistently</strong> within the App — it is read at the moment of calculation.</li>
+      <li>Health data is <strong>never transmitted</strong> to any server, third party, or external service.</li>
+      <li>Health data is <strong>never used</strong> for advertising, profiling, or any purpose other than the fatigue calculation shown to you within the App.</li>
+    </ul>
+    <p>You can revoke Health access at any time in <strong>iOS Settings → Privacy &amp; Security → Health → Shiftly</strong>.</p>
+
+    <!-- ALARMS -->
+    <h2 id="alarms">5. Alarms &amp; Notifications</h2>
+    <p>The App requests iOS notification permissions to schedule shift alarms and deliver brief reminders. All alarm scheduling is performed <strong>locally on your device</strong> by iOS. Alarms are stored in the iOS system alarm registry — the same one used by the built-in Clock app.</p>
+    <p>ShiftlyWork has no visibility into your notification history, alarm triggers, or notification delivery status. We do not use push notification services.</p>
+
+    <!-- PURCHASES -->
+    <h2 id="purchases">6. In-App Purchases</h2>
+    <p>Shiftly is purchased as a one-time $3.99 payment through the <strong>Apple App Store</strong>. All payment processing is handled entirely by Apple's StoreKit framework and Apple's servers.</p>
+    <p>ShiftlyWork never receives, processes, or stores your payment card information, billing address, or any financial details. For questions about billing, refunds, or purchase history, contact <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">Apple Support</a>.</p>
+
+    <!-- THIRD PARTY -->
+    <h2 id="third-party">7. Third-Party Services</h2>
+    <p>Shiftly integrates with the following Apple system frameworks only:</p>
+    <ul>
+      <li><strong>Apple StoreKit</strong> — handles the one-time $3.99 purchase and purchase restoration. Governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy ↗</a>.</li>
+      <li><strong>Apple HealthKit</strong> — optional, for sleep data as described in Section 4. Governed by Apple's Privacy Policy.</li>
+      <li><strong>Apple UserNotifications</strong> — for local alarm scheduling. No data leaves the device.</li>
+    </ul>
+    <p>Shiftly does <strong>not</strong> integrate any of the following:</p>
+    <ul>
+      <li>Third-party analytics SDKs (no Firebase Analytics, Mixpanel, Amplitude, etc.)</li>
+      <li>Advertising networks or attribution tools (no Facebook SDK, Adjust, AppsFlyer, etc.)</li>
+      <li>Crash reporting services that transmit user data (no Crashlytics, Sentry, etc.)</li>
+      <li>Social login or social sharing SDKs</li>
+      <li>Any service that transmits personally identifiable information</li>
+    </ul>
+
+    <!-- ANALYTICS -->
+    <h2 id="analytics">8. Analytics &amp; Tracking</h2>
+    <p>Shiftly does not track you. There is no analytics code in the App. We do not know:</p>
+    <ul>
+      <li>How often you open the app</li>
+      <li>Which features you use</li>
+      <li>Your device model or iOS version</li>
+      <li>Your location</li>
+      <li>Any behavioural or usage patterns</li>
+    </ul>
+    <p>The only aggregate, anonymised data we may receive is through <strong>Apple's App Store Connect</strong> (e.g. total download counts and crash reports that iOS optionally submits to Apple, not to us). This is governed by Apple's privacy policy and is outside our control. Apple does not share individual user data with us.</p>
+
+    <!-- CHILDREN -->
+    <h2 id="children">9. Children's Privacy</h2>
+    <p>Shiftly is designed for adult shift workers and is not directed at children under the age of 13 (or the applicable minimum age in your jurisdiction). We do not knowingly collect personal information from children. If you believe a child under 13 has provided personal information through the App, please contact us and we will take prompt action to address it — though given that no personal data is collected, this is inherently unlikely.</p>
+
+    <!-- DELETION -->
+    <h2 id="deletion">10. Data Deletion</h2>
+    <p>Since all data is stored locally on your device, you have complete control over deletion:</p>
+    <ul>
+      <li><strong>Delete all App data:</strong> Go to <strong>Settings → Reset All Events</strong> within Shiftly. This permanently erases all shifts, leave records, swap logs, and settings.</li>
+      <li><strong>Delete the App:</strong> Removing Shiftly from your device via a long-press → Remove App deletes all App data from your device.</li>
+      <li><strong>Revoke Health access:</strong> Go to iOS Settings → Privacy &amp; Security → Health → Shiftly and disable access. The App will stop reading Health data immediately.</li>
+    </ul>
+    <p>Because we do not collect or store any data on our servers, there is no data held by ShiftlyWork to request deletion of.</p>
+
+    <!-- YOUR RIGHTS -->
+    <h2 id="your-rights">11. Your Rights</h2>
+    <p>Since ShiftlyWork does not collect personal data, the formal exercise of data rights (access, portability, rectification, erasure, objection) under regulations such as GDPR or CCPA is straightforward: all control sits with you, on your device.</p>
+    <p>If you are located in the European Economic Area (EEA) or the United Kingdom, you may have additional rights under the GDPR. However, because we process no personal data, there is no data subject request to fulfil. All your data is on your device and under your direct control.</p>
+    <p>If you have any questions about your privacy rights, contact us at the address in Section 13.</p>
+
+    <!-- CHANGES -->
+    <h2 id="changes">12. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time — for example, if we add new features that interact with new data types, or to reflect changes in applicable law. When we make material changes, we will update the "Last updated" date at the top of this page and, where required, notify users through the App or App Store release notes.</p>
+    <p>Continued use of the App after a policy update constitutes your acceptance of the revised policy. We encourage you to review this page periodically.</p>
+
+    <hr>
+
+    <!-- CONTACT -->
+    <h2 id="contact">13. Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or the App's data practices, please contact us:</p>
+
+    <div class="contact-cards" role="list">
+      <div class="contact-card" role="listitem">
+        <div class="contact-card-icon" aria-hidden="true">✉️</div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-val"><a href="mailto:support@shiftlywork.com">support@shiftlywork.com</a></div>
+        </div>
+      </div>
+      <div class="contact-card" role="listitem">
+        <div class="contact-card-icon" aria-hidden="true">🌐</div>
+        <div>
+          <div class="contact-card-label">Website</div>
+          <div class="contact-card-val"><a href="https://shiftlywork.com" target="_blank" rel="noopener noreferrer">shiftlywork.com</a></div>
+        </div>
+      </div>
+      <div class="contact-card" role="listitem">
+        <div class="contact-card-icon" aria-hidden="true">📱</div>
+        <div>
+          <div class="contact-card-label">App Support</div>
+          <div class="contact-card-val"><a href="https://apps.apple.com/app/shiftlywork" target="_blank" rel="noopener noreferrer">App Store page ↗</a></div>
+        </div>
+      </div>
+    </div>
+
+    <p>We aim to respond to all privacy-related inquiries within 5 business days.</p>
+
+    <div class="doc-footer" role="contentinfo">
+      <span>© 2026 ShiftlyWork. All rights reserved.</span>
+      <a href="index.html">Home</a>
+      <a href="manual.html">User Manual</a>
+      <a href="https://apps.apple.com/app/shiftlywork" target="_blank" rel="noopener noreferrer">App Store ↗</a>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Sidebar active link on scroll
+var links = document.querySelectorAll('.sb-link');
+var headings = document.querySelectorAll('h2[id]');
+if (headings.length > 0 && 'IntersectionObserver' in window) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        links.forEach(function(l) { l.classList.remove('act'); });
+        var a = document.querySelector('.sb-link[href="#' + e.target.id + '"]');
+        if (a) a.classList.add('act');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  headings.forEach(function(h) { obs.observe(h); });
+}
+links.forEach(function(l) {
+  l.addEventListener('click', function() {
+    links.forEach(function(x) { x.classList.remove('act'); });
+    l.classList.add('act');
+  });
+});
+
+// === LANGUAGE SWITCHER ===
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+const labels = { en:'EN', ar:'AR', es:'ES', fr:'FR' };
+
+function setLang(lang) {
+  const isRTL = lang === 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+  document.getElementById('langLabel').textContent = labels[lang] || 'EN';
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    const active = btn.getAttribute('data-lang') === lang;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  localStorage.setItem('shiftly_lang', lang);
+}
+
+langBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const open = langMenu.classList.toggle('open');
+  langBtn.classList.toggle('open', open);
+  langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+
+langMenu.querySelectorAll('.lang-option').forEach(btn => {
+  btn.addEventListener('click', () => {
+    setLang(btn.getAttribute('data-lang'));
+    langMenu.classList.remove('open');
+    langBtn.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+    langMenu.classList.remove('open');
+    langBtn.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// Restore saved language
+(function() {
+  const saved = localStorage.getItem('shiftly_lang');
+  const supported = ['en','ar','es','fr'];
+  if (saved && supported.includes(saved) && saved !== 'en') setLang(saved);
+})();
+
+</script>
+</body>
+</html>

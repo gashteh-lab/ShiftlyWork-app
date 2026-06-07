@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+.env
+screenshots/IMG_*.jpg
+screenshots/IMG_*.png
+screenshots/ShiftlyWork_Logo_Favicon.png
